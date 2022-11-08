@@ -1,0 +1,46 @@
+# Development Log (Date: 28/10/2022 -- 4/11/2022)
+
+## Weekly Goals
+
+1. Form groups, and submit group in PL, meet up with teammates for the first time, carry out introductions and other formalities. 
+2. Set up means of communication between members; decided on Discord. 
+3. Discuss what projects to do and brainstorm ideas. 
+4. Find datasets to fuel idea; happening in conjunction with step 3 (ideally). 
+5. Finalize on an idea, and then further home in on two features that we are guaranteed to do that implement both a MST algorithm and a Path Finding Algorithm. 
+6. Further finalize the finalizing: get everyone to agree on the overall idea and direction of the project, assign roles for the week, and assign tasks. 
+7. Carry out tasks, such as:
+    a. writing the contract. 
+    b. writing the proposal. 
+    c. making the github page. 
+    d. making the discord for communications. 
+    e. writing dev log. 
+
+## Specific Tasks Completed (and by who):
+
+Goal 1: Alex called up everyone and connected them, and then had a meeting at Daniels Hall where the group met up. Goals 2, 3, 5, 6 were also done on that day. It was a pretty good way to get started on the project. 
+
+
+Shaurya did the first half of the proposal (he recommended the idea and knew it best), and the dev log. Dev log proof-read by Aakash. 
+
+Aakash did the team contract, and proof-read dev log and the timeline portion of proposal. 
+
+Alex proofread proposal and carried out graph analysis and wrote the graph analysis section of proposal
+
+Brendan proofread the proposal focusing on checking Alex's work on graph analysis and big-O. Brendan wrote the timeline of proposal.
+
+Everyone saved their work so no one should need to official submit it as it would show on PL... right?
+
+Everyone met all the weekly goals highlighted above. It was a bit chaotic though and we can defintely improve. 
+
+
+## Problems Encountered 
+
+The biggest problem was finding a dataset. We had originally assumed that we would easily find a dataset for our original idea of comparing petrol pump stations with alternative fuel stations. The dataset for petrol pump station locations proved impossible to find for Shaurya(writing this now). After spending 4 hours looking, I paniced and switched to the example project proposal of OpenFlights lmao: https://docs.google.com/document/d/1JYSf5cEvQfU-K2L0fevVF2Z03ML_sD9KJggGpUqvE8U/edit. The original idea was still possible but wouldnt be as valuable and insghtful without petrol pump station data as those and electric charging stations make up the real value of this project. But some members still wanted to carry out the original idea, so I rewrote the proposal. I guess we shouldn't take the avaliability of the dataset for granted, and plan better. We still met all our goals though. 
+
+## Plans for next week
+
+We all plan to meet up over the weekend either in person or on discord and make a plan for the next week. 
+
+## Optional: Questions for mentor
+
+None at the moment. 
