@@ -1,16 +1,22 @@
 # Development Log (Date: 06/11/2022 -- 11/11/2022)
 
 ## Weekly Goals
+
     1. Distribute and assign the roles and parts of the project.
+    
     2. Distribute work and specialize on the different parts of the project.
+    
     3. Decide on the different aspects of data to keep and to account for other variables needed for the project. 
+    
     4. Write python code to clean out the data and make it usable for the project. 
+    
     5. Finalize the algorithms used for the analysis of the data. 
 
 
 ## Specific Tasks Completed (and by who)
 
     1. We have finished assigning roles: 
+    
         i. Aakash finished the Development Log and is working on the cleaning process of the data. 
         
         ii. Shauraya and Alex are currently writing the algorithms in isolation and testing their own data to make sure it will work properly. 
@@ -20,7 +26,9 @@
     2. We have also selected what part of data we will end up using and finalized the exact amount of datasets we will use for the project. 
     
 ## Problems Encountered 
+
     One of the major problems we have encountered during our project session is the apparent lack of understanding when it came to the dataset. We initially had a misunderstanding in interpretting our dataset. The data has the longitude and the latitude values and we will be using those to consider the distance between any two points. However, we failed to realize that this distance will only give us the hypotenuse and the exact road length between the two points. Therfore, we have come up with a creative idea in order to get over this. Our current solution requires us to further improve the data by doing more research onto the curvature of the roads to account the distance between the two points. We will be using the average curvatures of the roads in each state. However, we are still dealing with this problem and will further be improving on to this on Sunday. 
+
 ## Plans for next week
 
     In the coming week, we will begin our week by meeting on Monday and having the clean data by Tuesday at latest. Furthermore, we plan to have the algorithms done by upcoming Friday so, it works on the given tests and then later will attempt to see if our data will work on our dataset. 
