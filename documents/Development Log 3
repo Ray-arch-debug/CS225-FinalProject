@@ -1,0 +1,31 @@
+# Development Log (Date: 11/12/2022 -- 11/18/2022)
+
+## Weekly Goals
+
+    1. Work on cleaning the data so it can be used by the project <deadline 11/25/2022>.
+    
+    2. Finish the data creation of the minimum border to border distance between states to help make a better graph and reduce calculations. <11/25/2022>
+    
+    3. Finish the algorthim 2, dijkstra's algorithm, and test it with custom dataset to unsure that it works as intended. <11/25/2022>
+    
+    4. Work on the algorithm 1, set up the algorithm to be able to make the minimum spaning tree. <In progress due 11/25/2022>
+
+## Specific Tasks Completed (and by who)
+
+    1. Aakash is working on the cleaning part of the data using either pandas library in python or the library provided in the class. He is also hand calculating data for the minimum distance between states.
+    
+    2. Alex will be working on the algorithm 2, dijkstra's algorithm and the test cases subsequntly. 
+    
+    3. Brendan and Shauraya are working on the minimum spaning tree and writting the sufficient that their algorithm works as intended.
+
+## Problems Encountered 
+
+    We made significant progress this week and relied on our previous project experience to distribute work. Our strategy seems to work great and we are talking about the issues that arise also to insure a better result. Our problem this week was certainly dealing with the massive number of data points and creating the minimum distance between states data will help us sort data better. We also have to come up with creative ways of sending our data from part 1 to part 2 which is also an area of concern we have dealt with. We decided on passing trees as the result of the first part to suplment our second part.
+    
+## Plans for next week
+
+    In the coming week, we plan to continue our work in the same goals as this is the major part of the project and we are projecting that we will have a majority of it working by the next week. 
+
+## Optional: Questions for mentor
+
+    None at the moment. 
