@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspaces/CS225/CS225-FinalProject
+CMAKE_SOURCE_DIR = /workspaces/cs225/CS225-FinalProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspaces/CS225/CS225-FinalProject/build
+CMAKE_BINARY_DIR = /workspaces/cs225/CS225-FinalProject/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225/CS225-FinalProject/build/CMakeFiles /workspaces/CS225/CS225-FinalProject/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/cs225/CS225-FinalProject/build/CMakeFiles /workspaces/cs225/CS225-FinalProject/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/CS225/CS225-FinalProject/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspaces/cs225/CS225-FinalProject/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -113,7 +113,7 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P /workspaces/CS225/CS225-FinalProject/build/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /workspaces/cs225/CS225-FinalProject/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
@@ -142,6 +142,45 @@ driver: cmake_check_build_system
 driver/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/driver.dir/build.make CMakeFiles/driver.dir/build
 .PHONY : driver/fast
+
+#=============================================================================
+# Target rules for targets named lodepng
+
+# Build rule for target.
+lodepng: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lodepng
+.PHONY : lodepng
+
+# fast build rule for target.
+lodepng/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/lodepng.dir/build.make lib/CMakeFiles/lodepng.dir/build
+.PHONY : lodepng/fast
+
+#=============================================================================
+# Target rules for targets named util
+
+# Build rule for target.
+util: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 util
+.PHONY : util
+
+# fast build rule for target.
+util/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/util.dir/build.make lib/CMakeFiles/util.dir/build
+.PHONY : util/fast
+
+#=============================================================================
+# Target rules for targets named cs225
+
+# Build rule for target.
+cs225: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 cs225
+.PHONY : cs225
+
+# fast build rule for target.
+cs225/fast:
+	$(MAKE) $(MAKESILENT) -f lib/CMakeFiles/cs225.dir/build.make lib/CMakeFiles/cs225.dir/build
+.PHONY : cs225/fast
 
 #=============================================================================
 # Target rules for targets named src
@@ -204,6 +243,30 @@ tests/tests.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests.cpp.s
 .PHONY : tests/tests.cpp.s
 
+tests/tests_kdtree.o: tests/tests_kdtree.cpp.o
+.PHONY : tests/tests_kdtree.o
+
+# target to build an object file
+tests/tests_kdtree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests_kdtree.cpp.o
+.PHONY : tests/tests_kdtree.cpp.o
+
+tests/tests_kdtree.i: tests/tests_kdtree.cpp.i
+.PHONY : tests/tests_kdtree.i
+
+# target to preprocess a source file
+tests/tests_kdtree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests_kdtree.cpp.i
+.PHONY : tests/tests_kdtree.cpp.i
+
+tests/tests_kdtree.s: tests/tests_kdtree.cpp.s
+.PHONY : tests/tests_kdtree.s
+
+# target to generate assembly for a file
+tests/tests_kdtree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/tests/tests_kdtree.cpp.s
+.PHONY : tests/tests_kdtree.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -212,15 +275,21 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... cs225"
 	@echo "... driver"
+	@echo "... lodepng"
 	@echo "... src"
 	@echo "... test"
+	@echo "... util"
 	@echo "... entry/driver.o"
 	@echo "... entry/driver.i"
 	@echo "... entry/driver.s"
 	@echo "... tests/tests.o"
 	@echo "... tests/tests.i"
 	@echo "... tests/tests.s"
+	@echo "... tests/tests_kdtree.o"
+	@echo "... tests/tests_kdtree.i"
+	@echo "... tests/tests_kdtree.s"
 .PHONY : help
 
 
@@ -232,7 +301,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P /workspaces/CS225/CS225-FinalProject/build/CMakeFiles/VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P /workspaces/cs225/CS225-FinalProject/build/CMakeFiles/VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

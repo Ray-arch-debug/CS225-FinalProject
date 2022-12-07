@@ -4,7 +4,10 @@ cmake_minimum_required(VERSION 3.10)
 set(assignment_name "CS225-FinalProject") # Name of the assignment
 set(assignment_version 1.2022.12.0) # Version, where minor=semester_year, patch=semester_end_month, tweak=revision
 set(assignment_entrypoints "driver") # Entrypoints to run the program
-set(assignment_clean_rm "") # Generated files that should be removed with "make clean"
+set(assignment_clean_rm 
+        "test_result_kdtree_2_2.kd"
+        "test_result_kdtree_2_10.kd"
+        "test_result_kdtree_2_20.kd") # Generated files that should be removed with "make clean"
 set(assignment_container "fa22") # Container we are targetting
 
 # Add color support to our messages.

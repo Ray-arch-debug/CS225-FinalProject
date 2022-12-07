@@ -1,5 +1,5 @@
 CMakeFiles/test.dir/tests/tests.cpp.o: \
-  /workspaces/CS225/CS225-FinalProject/tests/tests.cpp \
+  /workspaces/cs225/CS225-FinalProject/tests/tests.cpp \
   /usr/include/catch2/catch_test_macros.hpp \
   /usr/include/catch2/internal/catch_test_macro_impl.hpp \
   /usr/include/catch2/catch_user_config.hpp \

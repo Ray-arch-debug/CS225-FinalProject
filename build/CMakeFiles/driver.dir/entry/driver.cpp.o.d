@@ -1,6 +1,6 @@
 CMakeFiles/driver.dir/entry/driver.cpp.o: \
-  /workspaces/CS225/CS225-FinalProject/entry/driver.cpp \
-  /workspaces/CS225/CS225-FinalProject/src/Algorithms.h \
+  /workspaces/cs225/CS225-FinalProject/entry/driver.cpp \
+  /workspaces/cs225/CS225-FinalProject/src/Algorithms.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/vector \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/stl_algobase.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/11/../../../../include/x86_64-linux-gnu/c++/11/bits/c++config.h \
