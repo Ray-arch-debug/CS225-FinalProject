@@ -1,8 +1,16 @@
 #include "Algorithms.h"
 #include <limits.h>
 
-std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& graph) {
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <sstream>
 
+using namespace std;
+
+std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& graph) {
+    /*
     int distances[graph.size()]; // value at index i represents shortest distance from start node to node i 
     // (reminder: each node is assigned an index value, as explained in Algorithms.h)
  
@@ -43,5 +51,59 @@ std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& 
                 && dist[u] != INT_MAX
                 && dist[u] + graph[u][v] < dist[v])
                 dist[v] = dist[u] + graph[u][v];
+    }
+    */
+}
+
+/*
+    Assume file always opens
+*/
+void Algorithms::createGraphs(std::string filePath) {
+    vector<vector<string>> contents;
+    vector<string> row;
+    string line, word;
+    
+    fstream file(fname, ios::in);
+    if (file.is_open()) {
+        while(getline(file, line)) {
+            row.clear();
+            stringstream str(line);
+            while (getline(str, word, ',')) {
+                row.push_back(word);
+                content.push_back(row);
+            }
+        }
+    }
+    
+    for (unsigned i = 1; i < contents.size(); i++) {
+        Node node;
+        node.fuelType = contents[i][1];
+        node.streetAddress = contents[i][2];
+        node.state = contents[i][3];
+        node.latitude = contents[i][4];
+        node.longitude = contents[i][5];
+        nodes.push_back(node);
+    }
+
+    separateNodes();
+}
+
+void Algorithms::separateNodes() {
+    for (unsigned index = 0; index < nodes.size(); ++index) {
+        string currFuelType = nodes[i].fuelType;
+        if (map.find(currFuelType) == map.end()) {
+            std::set<Node> set;
+            set.insert(nodes[index]);
+            map.insert({currFuelType, set});
+        } else {
+            map.at(currFuelType).insert(nodes[index]);
+        }
+    }
+}
+
+void Algorithms::printGraphs(std::string fuelType) {
+    std::set<Node>& set = map.at(fuelType);
+    for (Node node : set) {
+        std::cout << node.streetAddress << std::endl;
     }
 }

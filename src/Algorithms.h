@@ -1,7 +1,9 @@
 #include <vector>
 #include <string>
+#include <set>
 
 typedef std::string string;
+typedef std::vector vector;
 
 // "Graph" is not a suitable name for this class because we have multiple graphs per fuel type
 class Algorithms {
@@ -21,6 +23,9 @@ class Algorithms {
     // next: create a mapping from std::vector<int> to std::vector<Node>
 
     // function takes in data.csv and creates graph from it
+    void createGraphs(std::string filePath);
+
+    void printGraphs(std::string fuelType);
     
     // TO-DO
     // - Prim's and Kruskal's
@@ -39,12 +44,14 @@ class Algorithms {
         */
         // std::map<std::string, int> map; // need a better name for this
 
-        std::map<std::string, std::vector<Node>> map; // map from fuelType to vector of nodes of that fuel type
+        std::map<std::string, std::set<Node>> map; // map from fuelType to vector of nodes of that fuel type
 
-        std::vector<Node> vector; // vector of all nodes that we will read in from csv file
+        std::vector<Node> nodes; // vector of all nodes that we will read in from csv file
 
-        struct Node {
-            std::string fuelType, streetAddress, state;
-            double latitude, longitude;
-        };
+        void separateNodes();
+};
+
+struct Node {
+    std::string fuelType, streetAddress, state;
+    double latitude, longitude;
 };
