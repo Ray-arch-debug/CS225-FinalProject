@@ -239,11 +239,6 @@ src/CMakeFiles/src.dir/Algorithms.cpp.o: ../src/Algorithms.cpp \
   /usr/include/c++/11/sstream \
   /usr/include/c++/11/bits/sstream.tcc
 
-src/CMakeFiles/src.dir/example.cpp.o: ../src/example.cpp \
-  ../src/example.h
-
-
-../src/example.h:
 
 /usr/include/c++/11/sstream:
 
@@ -474,8 +469,6 @@ src/CMakeFiles/src.dir/example.cpp.o: ../src/example.cpp \
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/c++/11/bits/vector.tcc:
-
-../src/example.cpp:
 
 /usr/include/c++/11/bits/stl_multimap.h:
 

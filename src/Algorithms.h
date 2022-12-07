@@ -1,3 +1,13 @@
+/**
+ * @file Algorithms.h
+ * Implementation of Dijkstra's and MST algorithms on graphs.
+ *
+ * @author Brendan Biernacki
+ * @author Shaurya Singh
+ * @author Alexander Wang
+ * @author Aakash Kumar
+ */
+
 #pragma once
 
 #include <vector>
@@ -8,16 +18,16 @@
 using namespace std;
 
 struct Node {
-    std::string index;
+    unsigned index;
     std::string fuelType;
     std::string streetAddress;
     std::string state;
-    std::string latitude;
-    std::string longitude;
+    double latitude;
+    double longitude;
 
-    bool operator<(const Node& a) {
+    /*bool operator<(const Node& a) {
         return index < a.index; 
-    };
+    };*/
 };
 
 // "Graph" is not a suitable name for this class because we have multiple graphs per fuel type
@@ -37,7 +47,11 @@ class Algorithms {
 
     // next: create a mapping from std::vector<int> to std::vector<Node>
 
-    // function takes in data.csv and creates graph from it
+    /**
+     * Creates a graph from the csv at the given filePath.
+     *
+     * @param filePath the relative path of the csv file.
+     */
     void createGraphs(std::string filePath);
 
     void printGraphs(std::string fuelType);

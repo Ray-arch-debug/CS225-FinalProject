@@ -1,3 +1,8 @@
+/**
+ * @file Algorithms.cpp
+ * Implementation of Algorithms class.
+ */
+
 #include "Algorithms.h"
 #include <limits.h>
 
@@ -57,26 +62,25 @@ std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& 
     return v;
 }
 
-/*
-    Assume file always opens
-*/
 void Algorithms::createGraphs(std::string filePath) {
     vector<vector<string>> contents;
     vector<string> row;
     string line, word;
     
     fstream file(filePath, ios::in);
-    if (file.is_open()) {
-        while(getline(file, line)) {
-            row.clear();
-            stringstream str(line);
-            while (getline(str, word, ',')) {
-                row.push_back(word);
-            }
-            contents.push_back(row);
+
+    if (!file.is_open()) {
+        throw std::invalid_argument("file did not open");
+        return;
+    }
+    
+    while (getline(file, line)) {
+        row.clear();
+        stringstream str(line);
+        while (getline(str, word, ',')) {
+            row.push_back(word);
         }
-    } else {
-        std::cout << "file did not open" << std::endl;
+        contents.push_back(row);
     }
     
     for (unsigned i = 1; i < contents.size(); i++) {
@@ -84,12 +88,18 @@ void Algorithms::createGraphs(std::string filePath) {
             continue;
         }
         Node node;
-        node.index = contents[i][0];
-        node.fuelType = contents[i][1];
-        node.streetAddress = contents[i][2];
-        node.state = contents[i][3];
-        node.latitude = contents[i][4];
-        node.longitude = contents[i][5];
+        try {
+            node.index = stoi(contents[i][0]);
+            node.fuelType = contents[i][1];
+            node.streetAddress = contents[i][2];
+            node.state = contents[i][3];
+            node.latitude = stod(contents[i][4]);
+            node.longitude = stod(contents[i][5]);
+        } catch (std::invalid_argument& e) {
+            throw std::invalid_argument("input file formatted incorrectly");
+            nodes.clear();
+            return;
+        }
         nodes.push_back(node);
     }
 
