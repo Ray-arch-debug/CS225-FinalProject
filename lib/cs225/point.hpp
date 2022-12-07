@@ -3,6 +3,8 @@
  * Implementation of Point class.
  */
 
+#include "point.h"
+
 /**
  * Point constructor. Initializes everything to 0.
  */

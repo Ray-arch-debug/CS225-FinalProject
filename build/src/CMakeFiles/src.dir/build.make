@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspaces/cs225/CS225-FinalProject
+CMAKE_SOURCE_DIR = /workspaces/CS225/CS225-FinalProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspaces/cs225/CS225-FinalProject/build
+CMAKE_BINARY_DIR = /workspaces/CS225/CS225-FinalProject/build
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/src.dir/depend.make
@@ -69,43 +69,59 @@ include src/CMakeFiles/src.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/src.dir/flags.make
 
+src/CMakeFiles/src.dir/Algorithms.cpp.o: src/CMakeFiles/src.dir/flags.make
+src/CMakeFiles/src.dir/Algorithms.cpp.o: ../src/Algorithms.cpp
+src/CMakeFiles/src.dir/Algorithms.cpp.o: src/CMakeFiles/src.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225/CS225-FinalProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/src.dir/Algorithms.cpp.o"
+	cd /workspaces/CS225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/Algorithms.cpp.o -MF CMakeFiles/src.dir/Algorithms.cpp.o.d -o CMakeFiles/src.dir/Algorithms.cpp.o -c /workspaces/CS225/CS225-FinalProject/src/Algorithms.cpp
+
+src/CMakeFiles/src.dir/Algorithms.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/Algorithms.cpp.i"
+	cd /workspaces/CS225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225/CS225-FinalProject/src/Algorithms.cpp > CMakeFiles/src.dir/Algorithms.cpp.i
+
+src/CMakeFiles/src.dir/Algorithms.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/Algorithms.cpp.s"
+	cd /workspaces/CS225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225/CS225-FinalProject/src/Algorithms.cpp -o CMakeFiles/src.dir/Algorithms.cpp.s
+
 src/CMakeFiles/src.dir/example.cpp.o: src/CMakeFiles/src.dir/flags.make
 src/CMakeFiles/src.dir/example.cpp.o: ../src/example.cpp
 src/CMakeFiles/src.dir/example.cpp.o: src/CMakeFiles/src.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/cs225/CS225-FinalProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/src.dir/example.cpp.o"
-	cd /workspaces/cs225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/example.cpp.o -MF CMakeFiles/src.dir/example.cpp.o.d -o CMakeFiles/src.dir/example.cpp.o -c /workspaces/cs225/CS225-FinalProject/src/example.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/CS225/CS225-FinalProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/src.dir/example.cpp.o"
+	cd /workspaces/CS225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/src.dir/example.cpp.o -MF CMakeFiles/src.dir/example.cpp.o.d -o CMakeFiles/src.dir/example.cpp.o -c /workspaces/CS225/CS225-FinalProject/src/example.cpp
 
 src/CMakeFiles/src.dir/example.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/src.dir/example.cpp.i"
-	cd /workspaces/cs225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/cs225/CS225-FinalProject/src/example.cpp > CMakeFiles/src.dir/example.cpp.i
+	cd /workspaces/CS225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/CS225/CS225-FinalProject/src/example.cpp > CMakeFiles/src.dir/example.cpp.i
 
 src/CMakeFiles/src.dir/example.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/src.dir/example.cpp.s"
-	cd /workspaces/cs225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/cs225/CS225-FinalProject/src/example.cpp -o CMakeFiles/src.dir/example.cpp.s
+	cd /workspaces/CS225/CS225-FinalProject/build/src && /usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/CS225/CS225-FinalProject/src/example.cpp -o CMakeFiles/src.dir/example.cpp.s
 
 # Object files for target src
 src_OBJECTS = \
+"CMakeFiles/src.dir/Algorithms.cpp.o" \
 "CMakeFiles/src.dir/example.cpp.o"
 
 # External object files for target src
 src_EXTERNAL_OBJECTS =
 
+src/libsrc.a: src/CMakeFiles/src.dir/Algorithms.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/example.cpp.o
 src/libsrc.a: src/CMakeFiles/src.dir/build.make
 src/libsrc.a: src/CMakeFiles/src.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/cs225/CS225-FinalProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libsrc.a"
-	cd /workspaces/cs225/CS225-FinalProject/build/src && $(CMAKE_COMMAND) -P CMakeFiles/src.dir/cmake_clean_target.cmake
-	cd /workspaces/cs225/CS225-FinalProject/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/src.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/CS225/CS225-FinalProject/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libsrc.a"
+	cd /workspaces/CS225/CS225-FinalProject/build/src && $(CMAKE_COMMAND) -P CMakeFiles/src.dir/cmake_clean_target.cmake
+	cd /workspaces/CS225/CS225-FinalProject/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/src.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/src.dir/build: src/libsrc.a
 .PHONY : src/CMakeFiles/src.dir/build
 
 src/CMakeFiles/src.dir/clean:
-	cd /workspaces/cs225/CS225-FinalProject/build/src && $(CMAKE_COMMAND) -P CMakeFiles/src.dir/cmake_clean.cmake
+	cd /workspaces/CS225/CS225-FinalProject/build/src && $(CMAKE_COMMAND) -P CMakeFiles/src.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/src.dir/clean
 
 src/CMakeFiles/src.dir/depend:
-	cd /workspaces/cs225/CS225-FinalProject/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/cs225/CS225-FinalProject /workspaces/cs225/CS225-FinalProject/src /workspaces/cs225/CS225-FinalProject/build /workspaces/cs225/CS225-FinalProject/build/src /workspaces/cs225/CS225-FinalProject/build/src/CMakeFiles/src.dir/DependInfo.cmake --color=$(COLOR)
+	cd /workspaces/CS225/CS225-FinalProject/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspaces/CS225/CS225-FinalProject /workspaces/CS225/CS225-FinalProject/src /workspaces/CS225/CS225-FinalProject/build /workspaces/CS225/CS225-FinalProject/build/src /workspaces/CS225/CS225-FinalProject/build/src/CMakeFiles/src.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/src.dir/depend
 
