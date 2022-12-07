@@ -1,9 +1,24 @@
+#pragma once
+
 #include <vector>
 #include <string>
 #include <set>
+#include <map>
 
-typedef std::string string;
-typedef std::vector vector;
+using namespace std;
+
+struct Node {
+    std::string index;
+    std::string fuelType;
+    std::string streetAddress;
+    std::string state;
+    std::string latitude;
+    std::string longitude;
+
+    bool operator<(const Node& a) {
+        return index < a.index; 
+    };
+};
 
 // "Graph" is not a suitable name for this class because we have multiple graphs per fuel type
 class Algorithms {
@@ -44,14 +59,9 @@ class Algorithms {
         */
         // std::map<std::string, int> map; // need a better name for this
 
-        std::map<std::string, std::set<Node>> map; // map from fuelType to vector of nodes of that fuel type
+        std::map<std::string, std::vector<Node>> map; // map from fuelType to vector of nodes of that fuel type
 
         std::vector<Node> nodes; // vector of all nodes that we will read in from csv file
 
         void separateNodes();
-};
-
-struct Node {
-    std::string fuelType, streetAddress, state;
-    double latitude, longitude;
 };

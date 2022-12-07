@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/workspaces/cs225/CS225-FinalProject/entry/driver.cpp" "CMakeFiles/driver.dir/entry/driver.cpp.o" "gcc" "CMakeFiles/driver.dir/entry/driver.cpp.o.d"
+  "/workspaces/CS225/CS225-FinalProject/entry/driver.cpp" "CMakeFiles/driver.dir/entry/driver.cpp.o" "gcc" "CMakeFiles/driver.dir/entry/driver.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/workspaces/cs225/CS225-FinalProject/build/src/CMakeFiles/src.dir/DependInfo.cmake"
+  "/workspaces/CS225/CS225-FinalProject/build/src/CMakeFiles/src.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

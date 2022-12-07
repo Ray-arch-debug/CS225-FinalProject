@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/src.dir/Algorithms.cpp.o"
+  "CMakeFiles/src.dir/Algorithms.cpp.o.d"
   "CMakeFiles/src.dir/example.cpp.o"
   "CMakeFiles/src.dir/example.cpp.o.d"
   "libsrc.a"

@@ -53,6 +53,8 @@ std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& 
                 dist[v] = dist[u] + graph[u][v];
     }
     */
+    std::vector<int> v;
+    return v;
 }
 
 /*
@@ -63,20 +65,26 @@ void Algorithms::createGraphs(std::string filePath) {
     vector<string> row;
     string line, word;
     
-    fstream file(fname, ios::in);
+    fstream file(filePath, ios::in);
     if (file.is_open()) {
         while(getline(file, line)) {
             row.clear();
             stringstream str(line);
             while (getline(str, word, ',')) {
                 row.push_back(word);
-                content.push_back(row);
             }
+            contents.push_back(row);
         }
+    } else {
+        std::cout << "file did not open" << std::endl;
     }
     
     for (unsigned i = 1; i < contents.size(); i++) {
+        if (contents[i].size() != 6) {
+            continue;
+        }
         Node node;
+        node.index = contents[i][0];
         node.fuelType = contents[i][1];
         node.streetAddress = contents[i][2];
         node.state = contents[i][3];
@@ -90,20 +98,20 @@ void Algorithms::createGraphs(std::string filePath) {
 
 void Algorithms::separateNodes() {
     for (unsigned index = 0; index < nodes.size(); ++index) {
-        string currFuelType = nodes[i].fuelType;
+        string currFuelType = nodes[index].fuelType;
         if (map.find(currFuelType) == map.end()) {
-            std::set<Node> set;
-            set.insert(nodes[index]);
-            map.insert({currFuelType, set});
+            std::vector<Node> v;
+            v.push_back(nodes[index]);
+            map.insert({currFuelType, v});
         } else {
-            map.at(currFuelType).insert(nodes[index]);
+            map.at(currFuelType).push_back(nodes[index]);
         }
     }
 }
 
 void Algorithms::printGraphs(std::string fuelType) {
-    std::set<Node>& set = map.at(fuelType);
-    for (Node node : set) {
+    // std::vector<Node>& v = map.at(fuelType);
+    for (Node node : map[fuelType]) {
         std::cout << node.streetAddress << std::endl;
     }
 }
