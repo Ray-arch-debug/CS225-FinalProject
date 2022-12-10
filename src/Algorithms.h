@@ -10,12 +10,17 @@
 
 #pragma once
 
+#include <fstream>
 #include <vector>
 #include <string>
 #include <set>
 #include <map>
 
 using namespace std;
+
+const double ROAD_CURVINESS_QUOTIENT = 1.24; // https://gispoint.de/fileadmin/user_upload/paper_gis_open/537521034.pdf
+const double MILES_PER_DEGREE_LATITUDE = 69.055;
+const double MILES_PER_DEGREE_LONGITUDE = 54.6;
 
 struct Node {
     unsigned index;
@@ -25,14 +30,35 @@ struct Node {
     double latitude;
     double longitude;
 
-    /*bool operator<(const Node& a) {
-        return index < a.index; 
-    };*/
+    bool operator<(const Node& other) const {
+        return index < other.index;
+    };
 };
+
+bool AreRelated(const Node& first, const Node& second, double range);
+
+/*
+ofstream& operator<<(ofstream& os, Node node) {
+    os << node.index << "\t";
+    os << node.fuelType << "\t";
+    os << node.streetAddress << "\t";
+    os << node.state << "\t";
+    os << node.latitude << "\t";
+    os << node.longitude << endl;
+    return os;
+}
+*/
 
 // "Graph" is not a suitable name for this class because we have multiple graphs per fuel type
 class Algorithms {
+
     public:
+
+    Algorithms(const string& filePath /*, const string& input_location  not sure about this */, const string& input_fuel_type, double input_range);
+
+    // NEED TO WRITE A DESTRUCTOR FOR ALGORITHMS
+    ~Algorithms() { delete graph_; }
+    
     /**
     * Dijkstra's Algorithm
     *
@@ -47,14 +73,9 @@ class Algorithms {
 
     // next: create a mapping from std::vector<int> to std::vector<Node>
 
-    /**
-     * Creates a graph from the csv at the given filePath.
-     *
-     * @param filePath the relative path of the csv file.
-     */
-    void createGraphs(std::string filePath);
 
-    void printGraphs(std::string fuelType);
+
+    //void printGraphs(const std::string& fuelType) const;
     
     // TO-DO
     // - Prim's and Kruskal's
@@ -65,17 +86,62 @@ class Algorithms {
     // - How are we going to create an adjacency matrix for each fuel type? Are we going to do this in main()?
     //      Or will we create a class for this? I am unsure how to go about this. Also, I think we should
     //      use two dimensional vectors as opposed to arrays since this will be simpler imo
+
+    // helper for testing
+    const set<Node>& GetVertices();
+
+    // helper for testing
+    const map<Node, set<Node>>& GetGraph();
+
     
     private:
         /*  
             map from fuelType to number of nodes in graph corresponding to that fuelType 
             (we find the number of nodes for the fuelType during contruction of graph)
         */
-        // std::map<std::string, int> map; // need a better name for this
 
-        std::map<std::string, std::vector<Node>> map; // map from fuelType to vector of nodes of that fuel type
+        class Graph { // possibly make Node* instead of Node
 
-        std::vector<Node> nodes; // vector of all nodes that we will read in from csv file
+            public:
+                //Graph() = default;
+                Graph(const std::string& filePath, const string& input_fuel_type, double input_range);
+                //Graph(const Graph& other) = delete;
+                //Graph& operator=(const Graph& other) = default;
+                //~Graph() = default;
+                const set<Node>& GetVertices();
+                const set<Node>& GetNeighbors(const Node& node);
 
-        void separateNodes();
+                // helper for testing
+                const map<Node, set<Node>>& GetGraph();
+
+
+
+            private:
+
+                /**
+                * Creates a graph from the csv at the given filePath. Uses the naive approach where all pairs
+                * of vertices are checked to determine if they are connected by an edge. The expected runtime
+                * is O(n^2).
+                *
+                * @param filePath the relative path of the csv file.
+                */
+                void createGraphNaive(const std::string& filePath);
+
+                /**
+                * Creates a graph from the csv at the given filePath. Uses the KDTree approach where only
+                * the pairs of vertices that are adjacent are ever visited. The expected runtime is O(n+m).
+                *
+                * @param filePath the relative path of the csv file.
+                */
+                void createGraphKDTree(const std::string& filePath);
+
+                void populateVertices(const std::string& filePath);
+
+                map<Node, set<Node>> graph_;
+                set<Node> vertices_;
+                string fuel_type_;
+                double range_;
+        };
+
+        Graph* graph_ = NULL;
 };

@@ -238,7 +238,7 @@ class KDTree
      * A NEW FUNCTION WE'VE WRITTEN - PLEASE READ THIS
      *
      * A modification of the findNearestNeighbor algorithm written in 
-     * mp_mosaic. 
+     * mp_mosaic. Finds all points within a specified distance of query.
      *
      * @param query The point we wish to find all neighbors within distance.
      * @param distance The maximum allowable distance from query for which

@@ -4,15 +4,24 @@
  */
 
 #include "Algorithms.h"
-#include <limits.h>
 
-#include <iostream>
+#include <cmath>
 #include <fstream>
+#include <iostream>
+#include <limits.h>
+#include <sstream>
 #include <string>
 #include <vector>
-#include <sstream>
 
 using namespace std;
+
+bool AreRelated(const Node& first, const Node& second, double range) {
+    double delta_latitude = first.latitude - second.latitude;
+    double delta_longitude = first.longitude - second.longitude;
+    double euclidean_distance = pow( pow(delta_latitude * MILES_PER_DEGREE_LATITUDE, 2) +
+                                     pow(delta_longitude * MILES_PER_DEGREE_LONGITUDE, 2), 0.5 );
+    return euclidean_distance < range / ROAD_CURVINESS_QUOTIENT;
+}
 
 std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& graph) {
     /*
@@ -62,66 +71,98 @@ std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& 
     return v;
 }
 
-void Algorithms::createGraphs(std::string filePath) {
-    vector<vector<string>> contents;
-    vector<string> row;
-    string line, word;
+
+
+Algorithms::Algorithms(const string& filePath, const string& input_fuel_type, double input_range) {
+    graph_ = new Graph(filePath, input_fuel_type, input_range);
+}
+
+const set<Node>& Algorithms::GetVertices() { return graph_->GetVertices(); }
+const map<Node, set<Node>>& Algorithms::GetGraph() { return graph_->GetGraph(); }
+
+const set<Node>& Algorithms::Graph::GetVertices() { return vertices_; }
+const set<Node>& Algorithms::Graph::GetNeighbors(const Node& node) {
+    if (vertices_.find(node) != vertices_.end()) {
+        return graph_.at(node);
+    }
+    throw invalid_argument("node not present in graph");
+}
+const map<Node, set<Node>>& Algorithms::Graph::GetGraph() { return graph_; }
+
+
+Algorithms::Graph::Graph(const std::string& filePath,
+                         const string& input_fuel_type, 
+                         double input_range) :
+                         fuel_type_(input_fuel_type), 
+                         range_(input_range) {
+
+    createGraphNaive(filePath);
+
+}
+
+void Algorithms::Graph::createGraphNaive(const std::string& filePath) {
+
+    populateVertices(filePath);
+
+    //unsigned count = 0;
+    for (const Node& node : vertices_) {
+        for (const Node& potential_neighbor : vertices_) {
+            if (&node != &potential_neighbor && AreRelated(node, potential_neighbor, range_)) {
+                graph_.at(node).insert(potential_neighbor);
+                //std::cout << node.index << "\t" << potential_neighbor.index << std::endl;
+                //count++;
+            }
+        }
+    }
+    //std::cout << count << std::endl;
+
+}
+
+void Algorithms::Graph::createGraphKDTree(const std::string& filePath) {
     
+    populateVertices(filePath);
+
+    // TODO
+
+}
+
+void Algorithms::Graph::populateVertices(const std::string& filePath) {
+
     fstream file(filePath, ios::in);
 
     if (!file.is_open()) {
-        throw std::invalid_argument("file did not open");
+        throw std::invalid_argument("file " + filePath + " did not open");
         return;
     }
     
-    while (getline(file, line)) {
-        row.clear();
+    file.ignore(INT_MAX, '\n'); // ignore first line
+
+    for (string line; getline(file, line); line.clear()) {
+        vector<string> row;
         stringstream str(line);
-        while (getline(str, word, ',')) {
+        for (string word; getline(str, word, ','); word.clear()) {
             row.push_back(word);
         }
-        contents.push_back(row);
-    }
-    
-    for (unsigned i = 1; i < contents.size(); i++) {
-        if (contents[i].size() != 6) {
-            continue;
-        }
-        Node node;
+
+        if (row.size() != 6) { continue; }
+
         try {
-            node.index = stoi(contents[i][0]);
-            node.fuelType = contents[i][1];
-            node.streetAddress = contents[i][2];
-            node.state = contents[i][3];
-            node.latitude = stod(contents[i][4]);
-            node.longitude = stod(contents[i][5]);
+            Node node;
+            node.index         = stoi(row.at(0));
+            node.fuelType      = row.at(1);
+            node.streetAddress = row.at(2);
+            node.state         = row.at(3);
+            node.latitude      = stod(row.at(4));
+            node.longitude     = stod(row.at(5));
+            if (node.fuelType == fuel_type_) { 
+                vertices_.insert(node);
+                graph_.insert({node, set<Node>()}); 
+            }
         } catch (std::invalid_argument& e) {
-            throw std::invalid_argument("input file formatted incorrectly");
-            nodes.clear();
-            return;
+            vertices_.clear();
+            graph_.clear();
+            throw std::invalid_argument("input file " + filePath + " formatted incorrectly");
         }
-        nodes.push_back(node);
-    }
 
-    separateNodes();
-}
-
-void Algorithms::separateNodes() {
-    for (unsigned index = 0; index < nodes.size(); ++index) {
-        string currFuelType = nodes[index].fuelType;
-        if (map.find(currFuelType) == map.end()) {
-            std::vector<Node> v;
-            v.push_back(nodes[index]);
-            map.insert({currFuelType, v});
-        } else {
-            map.at(currFuelType).push_back(nodes[index]);
-        }
-    }
-}
-
-void Algorithms::printGraphs(std::string fuelType) {
-    // std::vector<Node>& v = map.at(fuelType);
-    for (Node node : map[fuelType]) {
-        std::cout << node.streetAddress << std::endl;
     }
 }

@@ -1,9 +1,14 @@
-// TODO
 #include "Algorithms.h"
 
 int main() {
-    Algorithms a;
-    a.createGraphs("../entry/updatedData.csv");
-    a.printGraphs("CNG");
+
+    /*
+    if (argc != 4) {
+        std::cerr << "Usage: ./driver file_path fuel_type range" << std::endl;
+        return 1;
+    }
+    */
+    Algorithms a("../data/champaign_urbana_data.csv", "ELEC", 200.0);
+
     return 0;
 }

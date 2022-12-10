@@ -245,7 +245,35 @@ CMakeFiles/test.dir/tests/tests.cpp.o: ../tests/tests.cpp \
   /usr/include/catch2/internal/catch_config_counter.hpp \
   /usr/include/catch2/internal/catch_test_registry.hpp \
   /usr/include/catch2/interfaces/catch_interfaces_testcase.hpp \
-  /usr/include/catch2/internal/catch_preprocessor_remove_parens.hpp
+  /usr/include/catch2/internal/catch_preprocessor_remove_parens.hpp \
+  ../src/Algorithms.h \
+  /usr/include/c++/11/fstream \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/bits/codecvt.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+  /usr/include/c++/11/bits/fstream.tcc \
+  /usr/include/c++/11/set \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_set.h \
+  /usr/include/c++/11/bits/stl_multiset.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/debug/set \
+  /usr/include/c++/11/debug/set.h \
+  /usr/include/c++/11/debug/multiset.h \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_map.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/stl_multimap.h \
+  /usr/include/c++/11/debug/map \
+  /usr/include/c++/11/debug/map.h \
+  /usr/include/c++/11/debug/multimap.h
 
 CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
   /usr/include/catch2/catch_test_macros.hpp \
@@ -601,10 +629,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/stack:
 
-/usr/include/c++/11/bits/fstream.tcc:
-
-/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
-
 /usr/include/c++/11/sstream:
 
 /usr/include/x86_64-linux-gnu/bits/signal_ext.h:
@@ -655,17 +679,11 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/bits/locale_conv.h:
 
-/usr/include/c++/11/bits/locale_facets_nonio.tcc:
-
 /usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
-
-/usr/include/c++/11/bits/istream.tcc:
-
-/usr/include/c++/11/istream:
 
 /usr/include/c++/11/debug/safe_local_iterator.tcc:
 
@@ -673,17 +691,9 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/debug/safe_unordered_container.tcc:
 
-/usr/include/c++/11/fstream:
-
-/usr/include/c++/11/debug/safe_unordered_container.h:
-
 /usr/include/c++/11/debug/unordered_map:
 
 /usr/include/c++/11/bits/unordered_map.h:
-
-/usr/include/c++/11/iostream:
-
-/usr/include/c++/11/bits/node_handle.h:
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
@@ -693,7 +703,47 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/bits/refwrap.h:
 
+/usr/include/c++/11/bits/std_function.h:
+
+/usr/include/c++/11/bits/stl_tempbuf.h:
+
+/usr/include/c++/11/pstl/execution_defs.h:
+
+/usr/include/c++/11/bits/algorithmfwd.h:
+
+/usr/include/c++/11/bits/stl_algo.h:
+
+../tests/tests_kdtree.cpp:
+
+/usr/include/c++/11/debug/multimap.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
+
+/usr/include/c++/11/debug/map.h:
+
+/usr/include/c++/11/debug/map:
+
+/usr/include/c++/11/bits/stl_multimap.h:
+
 /usr/include/c++/11/bits/invoke.h:
+
+/usr/include/c++/11/bits/uses_allocator.h:
+
+/usr/include/c++/11/array:
+
+/usr/include/c++/11/tuple:
+
+/usr/include/c++/11/bits/stl_map.h:
+
+/usr/include/c++/11/map:
+
+/usr/include/c++/11/debug/multiset.h:
+
+/usr/include/c++/11/debug/set.h:
+
+/usr/include/c++/11/bits/stl_multiset.h:
+
+/usr/include/c++/11/bits/stl_set.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
@@ -739,6 +789,10 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/bits/cxxabi_forced.h:
 
+/usr/include/c++/11/debug/safe_unordered_container.h:
+
+/usr/include/c++/11/fstream:
+
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
 /usr/include/locale.h:
@@ -781,19 +835,9 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/stdlib.h:
 
-/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
-
-/usr/include/catch2/interfaces/catch_interfaces_testcase.hpp:
-
 /usr/include/c++/11/backward/binders.h:
 
 /usr/include/c++/11/debug/functions.h:
-
-/usr/include/c++/11/bits/codecvt.h:
-
-/usr/include/c++/11/bits/enable_special_members.h:
-
-/usr/include/c++/11/bits/basic_ios.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -838,10 +882,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 /usr/lib/llvm-14/lib/clang/14.0.0/include/__stddef_max_align_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
-
-/usr/include/c++/11/bits/std_function.h:
-
-/usr/include/c++/11/bits/stl_tempbuf.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
 
@@ -895,9 +935,17 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h:
 
+/usr/include/c++/11/iostream:
+
+/usr/include/c++/11/bits/node_handle.h:
+
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
+
+/usr/include/c++/11/functional:
+
+/usr/include/linux/errno.h:
 
 /usr/include/c++/11/debug/debug.h:
 
@@ -943,9 +991,13 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/ctime:
 
-/usr/include/catch2/internal/catch_test_macro_impl.hpp:
+/usr/include/c++/11/bits/enable_special_members.h:
 
-/usr/include/c++/11/exception:
+/usr/include/c++/11/bits/basic_ios.tcc:
+
+/usr/include/c++/11/bits/codecvt.h:
+
+/usr/include/catch2/internal/catch_test_macro_impl.hpp:
 
 /usr/include/c++/11/initializer_list:
 
@@ -975,10 +1027,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/asm-generic/errno-base.h:
 
-/usr/include/linux/errno.h:
-
-/usr/include/c++/11/functional:
-
 /usr/include/wchar.h:
 
 /usr/include/c++/11/bits/cxxabi_init_exception.h:
@@ -999,8 +1047,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/lib/llvm-14/lib/clang/14.0.0/include/stdarg.h:
 
-/usr/include/c++/11/array:
-
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
@@ -1018,6 +1064,8 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+
+/usr/include/c++/11/debug/set:
 
 /usr/include/c++/11/bits/stl_iterator_base_types.h:
 
@@ -1041,7 +1089,7 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/c++/11/type_traits:
 
-/usr/include/c++/11/tuple:
+/usr/include/c++/11/bits/stl_tree.h:
 
 /usr/include/c++/11/locale:
 
@@ -1050,8 +1098,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 /usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
-../tests/tests_kdtree.cpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
@@ -1079,12 +1125,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
-../lib/cs225/point.h:
-
-/usr/include/c++/11/ext/aligned_buffer.h:
-
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
 /usr/include/c++/11/bits/erase_if.h:
 
 /usr/include/c++/11/bits/ptr_traits.h:
@@ -1093,9 +1133,19 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/endian.h:
 
+../lib/cs225/point.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/c++/11/ext/aligned_buffer.h:
+
 /usr/include/x86_64-linux-gnu/bits/byteswap.h:
 
 /usr/include/alloca.h:
+
+/usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/bits/std_abs.h:
 
 /usr/include/c++/11/cstdio:
 
@@ -1134,8 +1184,6 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 /usr/include/c++/11/debug/safe_base.h:
 
 /usr/include/c++/11/cassert:
-
-/usr/include/c++/11/bits/stl_algo.h:
 
 /usr/include/c++/11/bits/stl_stack.h:
 
@@ -1190,6 +1238,8 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
 
 /usr/include/c++/11/bits/ios_base.h:
+
+/usr/include/c++/11/set:
 
 /usr/include/c++/11/bits/locale_classes.h:
 
@@ -1261,12 +1311,18 @@ CMakeFiles/test.dir/tests/tests_kdtree.cpp.o: ../tests/tests_kdtree.cpp \
 
 /usr/include/catch2/internal/catch_preprocessor_remove_parens.hpp:
 
-/usr/include/c++/11/pstl/execution_defs.h:
+/usr/include/c++/11/exception:
 
-/usr/include/c++/11/bits/algorithmfwd.h:
+../src/Algorithms.h:
 
-/usr/include/c++/11/bits/std_abs.h:
+/usr/include/c++/11/istream:
 
-/usr/include/c++/11/bits/stl_heap.h:
+/usr/include/c++/11/bits/istream.tcc:
 
-/usr/include/c++/11/bits/uses_allocator.h:
+/usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
+
+/usr/include/catch2/interfaces/catch_interfaces_testcase.hpp:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
