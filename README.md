@@ -45,7 +45,7 @@
 
 <!--- Summary of presentation introduction --->
 ## Summary
-
+The following is the summary.
 
 
 <!--- Technical architecture of project --->
