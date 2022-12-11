@@ -92,7 +92,7 @@ The four of us also enjoyed working on this project together due to the innovati
 ### Running Instructions
 
 <ol type="1">
-   <li>From the build directory, run <code>make main</code></li>
+   <li>From the build directory, run <code>make</code></li>
    
 </ol>
 
