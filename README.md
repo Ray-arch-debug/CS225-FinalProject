@@ -10,11 +10,11 @@
   <p align = "center">
     <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/blob/main/documents/Team%20Proposal">Project Proposal</a>
     |
-    <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Development</a>
+    <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Presentation Video</a>
     |
-    <a href = "https://mediaspace.illinois.edu/media/t/1_501wkwbs">Demo</a>
+    <a href = "https://mediaspace.illinois.edu/media/t/1_501wkwbs">Data</a>
     |
-    <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Reach Out</a>
+<!--     <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Project Structure</a> -->
   </p>
 </div>
 
@@ -26,15 +26,15 @@
       <a href = "#about-our-project">About Our Project</a>
       <ul>
         <li><a href = "#inspiration">Inspiration</a></li>
-        <li><a href = "#technical-architecture">Technical Architecture</a></li>
+        <li><a href = "#project-architecture">Technical Architecture</a></li>
       </ul>
     </li>
     <li><a href = "#about-us">About Us</a></li>
     <li>
       <a href = "#getting-started">Getting Started</a>
       <ul>
-        <li><a href = "#download-instructions">Download Instructions</a></li>
-        <li><a href = "#notes-on-gameplay">Notes On Gameplay</a></li>
+        <li><a href = "#running-instructions">Download Instructions</a></li>
+        <li><a href = "#testing the code">Notes On Gameplay</a></li>
       </ul>
     </li>
   </ol>
