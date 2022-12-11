@@ -79,12 +79,12 @@ The four of us also enjoyed working on this project together due to the innovati
 
 <ol type="1">
    <li>Open up your Terminal</li>
-   <li>cd into the folder containing cs225 Dockerfile</li>
-   <li>git clone https://github.com/Ray-arch-debug/CS225-FinalProject.git</li>
-  <li>cd CS-225FinalProject</li>
-  <li>mkdir build</li>
-  <li>cd build</li>
-  <li>cmake ..</li>
+   <li>`cd` into the folder containing cs225 Dockerfile</li>
+   <li>`git clone https://github.com/Ray-arch-debug/CS225-FinalProject.git`</li>
+  <li>`cd CS-225FinalProject`</li>
+  <li>`mkdir build`</li>
+  <li>`cd build`</li>
+  <li>`cmake ..`</li>
 </ol>
 
 
