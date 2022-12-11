@@ -67,7 +67,9 @@ The inspiration for this project comes from the genuine care we have towards the
 
 <!--- Group members and their roles --->
 ## About Us
+The four of us are a team of students who have met and developed ourselves through the CS-225 course. We are all passionate programs with different set of skills and we have come together nicely on this project. We have all grew up in cities and polltion and environment destruction has always been a major part of our lives, hence we have used backgrounds to come up with this project. While all four of us have previous knowledge of C++, which makes up the majority of our project, we also used python and other python libraries in order to make our data easy to read and use. Only Brendan and Aakash have previous experiences with python. 
 
+The four of us also enjoyed working on this project together due to the innovative and new things we got to do throughout the project. Aside from python, we also attempted to use a K/D Tree to represent our data which was something we didn't envision ourselves doing. This part of the project was challenging and brought out some of our best work. 
 
 
 
