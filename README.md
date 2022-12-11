@@ -4,7 +4,7 @@
   
   <p align = "center">
     <h1>RUN 4</h1>
-    <p><h3>Created by Yash Telang, Arthur Wang, Charlie Du, and Alex Wang</h3></p>
+    <p><h3>Created by Aakash Kumar, Brendan Biernacki, Shaurya ----, and Alex Wang</h3></p>
   </p>
   
   <p align = "center">
