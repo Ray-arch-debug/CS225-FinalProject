@@ -45,12 +45,13 @@
 
 <!--- Summary of presentation introduction --->
 ## Summary
-The following is the summary.
+Our project is a mission with its focus on the environment friendly usage of alternative fuels. In our project, we hope to provide a connection of alternate fuel stations which will make a path from the users starting location to his destination. The project functions as map but traverses only based on latitudes and longitudes while accounting for the distance of roads by being multiplied by a road curvature constant. This project will go to show the shortest path from one alternate fuel station to another. Through this project, we hope to showcase the limitations of automobiles which rely on these alternate fuels.
 
 
 <!--- Technical architecture of project --->
 ## About Our Project
 ### Inspiration
+The inspiration for this project comes from the genuine care we have towards the environment as well as looking at some of the United Nations sustainablity goals for the environment. There already exists several scientific documents which provide evidence of the existence of global warming. Among other forms of pollution, automobiles are also a source of pollution and alternate fuels are a potential solution to this problem. 
 
 
 ### Project Architecture
