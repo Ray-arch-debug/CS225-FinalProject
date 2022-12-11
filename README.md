@@ -8,7 +8,7 @@
   </p>
   
   <p align = "center">
-    <a href = "https://docs.google.com/document/d/1IUf3dyW1TnD_ucja0UIhg7Jr_0muf89ayezwk0SF0hw/edit?usp=sharing">Project Proposal</a>
+    <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/blob/main/documents/Team%20Proposal">Project Proposal</a>
     |
     <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Development</a>
     |
