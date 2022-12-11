@@ -4,6 +4,7 @@
  */
 
 #include "Algorithms.h"
+#include "kdtree.h"
 
 #include <cmath>
 #include <fstream>
@@ -15,7 +16,7 @@
 
 using namespace std;
 
-bool AreRelated(const Node& first, const Node& second, double range) {
+bool AreWithinRange(const Node& first, const Node& second, double range) {
     double delta_latitude = first.latitude - second.latitude;
     double delta_longitude = first.longitude - second.longitude;
     double euclidean_distance = pow( pow(delta_latitude * MILES_PER_DEGREE_LATITUDE, 2) +
@@ -73,30 +74,37 @@ std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& 
 
 
 
-Algorithms::Algorithms(const string& filePath, const string& input_fuel_type, double input_range) {
-    graph_ = new Graph(filePath, input_fuel_type, input_range);
-}
+Algorithms::Algorithms(const string& filePath, 
+                       const string& input_fuel_type, 
+                       double input_range, 
+                       bool useKDTree) : 
+                       graph_(filePath, input_fuel_type, input_range, useKDTree) {}
 
-const set<Node>& Algorithms::GetVertices() { return graph_->GetVertices(); }
-const map<Node, set<Node>>& Algorithms::GetGraph() { return graph_->GetGraph(); }
+const set<Node>& Algorithms::GetVertices() const { return graph_.GetVertices(); }
+const map<Node, set<Node>>& Algorithms::GetGraph() const { return graph_.GetGraph(); }
 
-const set<Node>& Algorithms::Graph::GetVertices() { return vertices_; }
-const set<Node>& Algorithms::Graph::GetNeighbors(const Node& node) {
+const set<Node>& Algorithms::Graph::GetVertices() const { return vertices_; }
+const set<Node>& Algorithms::Graph::GetNeighbors(const Node& node) const {
     if (vertices_.find(node) != vertices_.end()) {
         return graph_.at(node);
     }
     throw invalid_argument("node not present in graph");
 }
-const map<Node, set<Node>>& Algorithms::Graph::GetGraph() { return graph_; }
+const map<Node, set<Node>>& Algorithms::Graph::GetGraph() const { return graph_; }
 
 
 Algorithms::Graph::Graph(const std::string& filePath,
                          const string& input_fuel_type, 
-                         double input_range) :
+                         double input_range,
+                         bool useKDTree) :
                          fuel_type_(input_fuel_type), 
                          range_(input_range) {
 
-    createGraphNaive(filePath);
+    if (useKDTree) {
+        createGraphKDTree(filePath);
+    } else {
+        createGraphNaive(filePath);
+    }
 
 }
 
@@ -104,17 +112,13 @@ void Algorithms::Graph::createGraphNaive(const std::string& filePath) {
 
     populateVertices(filePath);
 
-    //unsigned count = 0;
     for (const Node& node : vertices_) {
         for (const Node& potential_neighbor : vertices_) {
-            if (&node != &potential_neighbor && AreRelated(node, potential_neighbor, range_)) {
+            if (&node != &potential_neighbor && AreWithinRange(node, potential_neighbor, range_)) {
                 graph_.at(node).insert(potential_neighbor);
-                //std::cout << node.index << "\t" << potential_neighbor.index << std::endl;
-                //count++;
             }
         }
     }
-    //std::cout << count << std::endl;
 
 }
 
@@ -122,7 +126,27 @@ void Algorithms::Graph::createGraphKDTree(const std::string& filePath) {
     
     populateVertices(filePath);
 
-    // TODO
+    std::vector<Point<2>> points;
+    std::map<Point<2>, const Node&> points_to_nodes;
+
+    for (const Node& node : vertices_) {
+        Point<2> point { MILES_PER_DEGREE_LATITUDE * node.latitude, MILES_PER_DEGREE_LONGITUDE * node.longitude };
+        points.push_back(point);
+        points_to_nodes.insert({point, node});
+    }
+    KDTree<2> kdtree(points);
+
+    // may want to improve this later, Shaurya and I discussed doing a queue approach
+
+    for (const Node& node : vertices_) {
+        Point<2> point { MILES_PER_DEGREE_LATITUDE * node.latitude, MILES_PER_DEGREE_LONGITUDE * node.longitude };
+        const vector<Point<2>>& neighbors = kdtree.findWithinDistance(point, range_ / ROAD_CURVINESS_QUOTIENT);
+        for (const Point<2>& neighbor : neighbors) {
+            if (point != neighbor) { 
+                graph_.at(node).insert(points_to_nodes.at(neighbor));
+            }
+        }
+    }
 
 }
 

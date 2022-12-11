@@ -23,6 +23,7 @@ const double MILES_PER_DEGREE_LATITUDE = 69.055;
 const double MILES_PER_DEGREE_LONGITUDE = 54.6;
 
 struct Node {
+
     unsigned index;
     std::string fuelType;
     std::string streetAddress;
@@ -33,9 +34,14 @@ struct Node {
     bool operator<(const Node& other) const {
         return index < other.index;
     };
+
+    bool operator==(const Node& other) const {
+        return index == other.index; // assume indices are distinct
+    }
+
 };
 
-bool AreRelated(const Node& first, const Node& second, double range);
+bool AreWithinRange(const Node& first, const Node& second, double range);
 
 /*
 ofstream& operator<<(ofstream& os, Node node) {
@@ -54,11 +60,11 @@ class Algorithms {
 
     public:
 
-    Algorithms(const string& filePath /*, const string& input_location  not sure about this */, const string& input_fuel_type, double input_range);
+    Algorithms(const string& filePath /*, const string& input_location  not sure about this */, const string& input_fuel_type, double input_range, bool useKDTree);
 
     // NEED TO WRITE A DESTRUCTOR FOR ALGORITHMS
-    ~Algorithms() { delete graph_; }
-    
+    //~Algorithms() { delete graph_; }
+
     /**
     * Dijkstra's Algorithm
     *
@@ -71,11 +77,6 @@ class Algorithms {
     */
     std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& graph);
 
-    // next: create a mapping from std::vector<int> to std::vector<Node>
-
-
-
-    //void printGraphs(const std::string& fuelType) const;
     
     // TO-DO
     // - Prim's and Kruskal's
@@ -88,31 +89,27 @@ class Algorithms {
     //      use two dimensional vectors as opposed to arrays since this will be simpler imo
 
     // helper for testing
-    const set<Node>& GetVertices();
+    const set<Node>& GetVertices() const;
 
     // helper for testing
-    const map<Node, set<Node>>& GetGraph();
+    const map<Node, set<Node>>& GetGraph() const;
 
     
     private:
-        /*  
-            map from fuelType to number of nodes in graph corresponding to that fuelType 
-            (we find the number of nodes for the fuelType during contruction of graph)
-        */
 
         class Graph { // possibly make Node* instead of Node
 
             public:
                 //Graph() = default;
-                Graph(const std::string& filePath, const string& input_fuel_type, double input_range);
+                Graph(const std::string& filePath, const string& input_fuel_type, double input_range, bool useKDTree);
                 //Graph(const Graph& other) = delete;
                 //Graph& operator=(const Graph& other) = default;
                 //~Graph() = default;
-                const set<Node>& GetVertices();
-                const set<Node>& GetNeighbors(const Node& node);
+                const set<Node>& GetVertices() const;
+                const set<Node>& GetNeighbors(const Node& node) const;
 
                 // helper for testing
-                const map<Node, set<Node>>& GetGraph();
+                const map<Node, set<Node>>& GetGraph() const;
 
 
 
@@ -142,6 +139,6 @@ class Algorithms {
                 string fuel_type_;
                 double range_;
         };
-
-        Graph* graph_ = NULL;
+        Graph graph_;
+        //Graph* graph_ = NULL;
 };

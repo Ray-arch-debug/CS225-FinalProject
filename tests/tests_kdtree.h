@@ -12,6 +12,7 @@ void writeKdTreeToFile(const KDTree<Dim>& tree, string fname)
   outputFile.close();
 }
 
+
 //
 // Simple Constructor
 //

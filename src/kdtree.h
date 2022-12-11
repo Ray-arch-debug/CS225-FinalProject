@@ -247,7 +247,7 @@ class KDTree
      * of these points is not relevant. A vector is used because it has O(1)*
      * (amortized) insertion time.
      */
-    const std::vector<Point<Dim>>& findWithinDistance(const Point<Dim>& query,
+    const std::vector<Point<Dim>> findWithinDistance(const Point<Dim>& query,
                                                       double distance) const;
 
 
@@ -279,7 +279,7 @@ class KDTree
     /**
      * @todo Add your helper functions here.
      */
-     static int squaredDistance(Point<Dim> first, Point<Dim> second);
+     static double squaredDistance(Point<Dim> first, Point<Dim> second);
 
      void buildTree(vector<Point<Dim>>& newPoints, KDTreeNode*& node, unsigned mid, unsigned start, unsigned end);
 
@@ -290,6 +290,8 @@ class KDTree
      const vector<Point<Dim>>& getPointsVector() const;
 
      Point<Dim> findNearestNeighborSearch(const Point<Dim>& query, KDTreeNode* node, unsigned& dim_index) const;
+
+     const std::vector<Point<Dim>> findWithinDistance(const Point<Dim>& query, KDTreeNode* node, double distance, unsigned& dim_index) const;
      
      void incDim(unsigned& dim_index) const;
      void decDim(unsigned& dim_index) const;

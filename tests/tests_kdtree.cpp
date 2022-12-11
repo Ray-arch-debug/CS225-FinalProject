@@ -324,3 +324,60 @@ TEST_CASE("KDTree::findNearestNeighbor (2D), testing correct path with fence jum
   REQUIRE(tree.findNearestNeighbor(target) == expected);
 }
 
+
+TEST_CASE("KDTree::findWithinDistance", "") {
+  double coords[20][2] = {{84, 44}, 
+                          {74, 0},  
+                          {54, 62}, 
+                          {59, 0},  
+                          {34, 15}, 
+                          {42, 63},
+                          {96, 56}, 
+                          {44, 79},
+                          {44, 43},
+                          {28, 10}, 
+                          {60, 30}, 
+                          {88, 72}, 
+                          {75, 68}, 
+                          {43, 65},
+                          {48, 0},  
+                          {14, 15}, 
+                          {49, 83},
+                          {51, 35},
+                          {95, 50},  
+                          {82, 20}}; 
+
+  Point<2> query(45, 80);
+  double distance = 20.22;
+
+  double expectedCoords[5][2] = {{54, 62}, 
+                                {42, 63},
+                                {44, 79},
+                                {43, 65},
+                                {49, 83}};
+  std::vector<Point<2>> expected;
+  for (int i = 0; i < 5; i++) {
+    expected.push_back(Point<2>(expectedCoords[i]));
+  }
+
+  bool isMine[20] = {0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1};
+
+  vector<Point<2>> points;
+  MineActionFAIL<2> action;
+  for (int i = 0; i < 20; ++i)
+      points.push_back(Point<2>(coords[i], isMine[i], &action));
+
+  KDTree<2> tree(points);
+
+  action.trigger = true;
+  std::vector<Point<2>> actual = tree.findWithinDistance(query, distance);
+  action.trigger = false;
+
+  std::sort(actual.begin(), actual.end());
+  std::sort(expected.begin(), expected.end());
+  REQUIRE( actual == expected );
+
+  std::string fname = "test_result_kdtree_neighbors_2_20.kd";
+  writeKdTreeToFile(tree,fname);
+  compareBinaryFiles(fname, "../tests/expected_kdtree_neighbors_2_20.kd" );
+}

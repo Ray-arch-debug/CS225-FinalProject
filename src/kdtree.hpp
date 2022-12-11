@@ -31,8 +31,8 @@ bool KDTree<Dim>::shouldReplace(const Point<Dim>& target,
     /**
      * @todo Implement this function!
      */
-     int potential_dist = squaredDistance(potential, target);
-     int current_dist = squaredDistance(currentBest, target);
+     double potential_dist = squaredDistance(potential, target);
+     double current_dist = squaredDistance(currentBest, target);
 
      return (potential_dist < current_dist) || (potential_dist == current_dist && potential < currentBest);
 }
@@ -87,8 +87,8 @@ Point<Dim> KDTree<Dim>::findNearestNeighbor(const Point<Dim>& query) const
 }
 
 template <int Dim>
-int KDTree<Dim>::squaredDistance(Point<Dim> first, Point<Dim> second) {
-  int sum = 0;
+double KDTree<Dim>::squaredDistance(Point<Dim> first, Point<Dim> second) {
+  double sum = 0;
   for (int i = 0; i < Dim; i++) {
     sum += (first[i] - second[i]) * (first[i] - second[i]);
   }
@@ -116,7 +116,7 @@ unsigned KDTree<Dim>::quickSelect(vector<Point<Dim>>& newPoints, unsigned dim_in
   while (left < right) {
     const Point<Dim>& left_point = newPoints.at(left);
     const Point<Dim>& right_point = newPoints.at(right);
-    if (left_point[dim_index] < pivot_point[dim_index] || (left_point[dim_index] == pivot_point[dim_index] && left_point < pivot_point) ) {
+    if (left_point[dim_index] < pivot_point[dim_index] || (left_point[dim_index] == pivot_point[dim_index] && left_point <= pivot_point) ) {
       left++;
       continue;
     }
@@ -211,9 +211,53 @@ Point<Dim> KDTree<Dim>::findNearestNeighborSearch(const Point<Dim>& query, KDTre
 }
 
 template <int Dim>
-const std::vector<Point<Dim>>& KDTree<Dim>::findWithinDistance(const Point<Dim>& query, double distance) const {
-  // TODO
-  return std::vector<Point<Dim>>();
+const std::vector<Point<Dim>> KDTree<Dim>::findWithinDistance(const Point<Dim>& query, double distance) const {
+  unsigned dim_index = 0;
+  return findWithinDistance(query, root, distance, dim_index);
+}
+
+template <int Dim>
+const std::vector<Point<Dim>> KDTree<Dim>::findWithinDistance(const Point<Dim>& query, KDTreeNode* node, double distance, unsigned& dim_index) const {
+  std::vector<Point<Dim>> close_points;
+
+  std::stack<KDTreeNode*> stack;
+    for (KDTreeNode* curr = node; curr != NULL; incDim(dim_index)) {
+      stack.push(curr);
+      if ( query[dim_index] < curr->point[dim_index] || (query[dim_index] == curr->point[dim_index] && query < curr->point) ) {
+        curr = curr->left;
+      } else {
+        curr = curr->right;
+      }
+    }
+
+    while (!stack.empty()) {
+      KDTreeNode* curr = stack.top();
+      stack.pop();
+      decDim(dim_index);
+
+      // if the hypersphere intersects the other side (other subtree)
+      if ( abs(query[dim_index] - curr->point[dim_index]) <= distance ) {
+        if ( squaredDistance(query, curr->point) <= distance * distance ) { close_points.push_back(curr->point); }
+        if ( query[dim_index] < curr->point[dim_index] || (query[dim_index] == curr->point[dim_index] && query < curr->point) ) {
+          // search curr's right subtree, left subtree already searched
+          if (curr->right != NULL) {
+            incDim(dim_index);
+            const std::vector<Point<Dim>>& close_in_subtree = findWithinDistance(query, curr->right, distance, dim_index);
+            decDim(dim_index);
+            for (const Point<Dim>& point : close_in_subtree) { close_points.push_back(point); }
+          }
+        } else {
+          // search curr's left subtree, right subtree already searched
+          if (curr->left != NULL) {
+            incDim(dim_index);
+            const std::vector<Point<Dim>>& close_in_subtree = findWithinDistance(query, curr->left, distance, dim_index);
+            decDim(dim_index);
+            for (const Point<Dim>& point : close_in_subtree) { close_points.push_back(point); }
+          }
+        }
+      }
+    }
+    return close_points;
 }
 
 template <int Dim>
