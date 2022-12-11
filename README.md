@@ -34,7 +34,7 @@
       <a href = "#getting-started">Getting Started</a>
       <ul>
         <li><a href = "#running-instructions">Download Instructions</a></li>
-        <li><a href = "#testing the code">Notes On Gameplay</a></li>
+        <li><a href = "#testing-the-code">Notes On Gameplay</a></li>
       </ul>
     </li>
   </ol>
@@ -52,7 +52,7 @@ Our project is an original game called Run 4. Run 4 was built using Unity and is
 ### Inspiration
 When determining what kind of project to do, we wanted to choose something that we would not only learn from but was also fun. Run 4 was the perfect choice for this. Most of us did not have much game development experience, so we would learn a lot from creating our first game. Additionally, although Yash, Arthur, and Alex didn't have prior Unity experience, Charlie did. Hence, we felt comfortable taking on this challenge. In the end, we learned a lot about not just how to code a game, but also how to organize and complete a project in a timely fashion (the challenges we ran into are described in more detail in our "Development" link at the top of this page). Meanwhile, this project was super fun because we got to create something that we can share with and enjoy playing with others.
 
-### Technical Architecture
+### Project Architecture
 <div align = "center"> 
   <img src = "images/diagram.png">
 </div>
@@ -73,7 +73,7 @@ To prepare for the final project presentation, Yash and Arthur wrote up the deve
 
 <!--- Provides reproducible installation and running instructions --->
 ## Getting Started
-### Download Instructions
+### Running Instructions
 1. Go to [RUN 4](https://drive.google.com/drive/u/1/folders/13qCTqrXj8mvp2V7zyenpdeTcxGncnVcA)
 2. Download the zip file (Build.zip)
 3. Unzip/extract the zip file's contents and save the contents locally onto your computer
@@ -81,7 +81,7 @@ To prepare for the final project presentation, Yash and Arthur wrote up the deve
 
 
 
-### Notes On GamePlay
+### Testing the code
 - How To Win: Complete all of the objectives before you die.
 
 - Screen
