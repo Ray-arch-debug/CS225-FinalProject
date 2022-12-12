@@ -109,6 +109,9 @@ void KDTree<Dim>::buildTree(vector<Point<Dim>>& newPoints, KDTreeNode*& node, un
 template <int Dim>
 unsigned KDTree<Dim>::quickSelect(vector<Point<Dim>>& newPoints, unsigned dim_index, unsigned mid, unsigned start, unsigned end) {
   if (start == end-1) { return start; }
+  if (mid == 27262) {
+    std::cout << newPoints.at(mid) << std::endl;
+  }
   std::swap(newPoints.at(mid), newPoints.at(end-1));
   unsigned left = start;
   unsigned right = end-1;

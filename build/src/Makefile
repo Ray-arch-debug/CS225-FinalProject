@@ -155,6 +155,30 @@ Algorithms.cpp.s:
 	cd /workspaces/cs225/CS225-FinalProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/Algorithms.cpp.s
 .PHONY : Algorithms.cpp.s
 
+heap.o: heap.cpp.o
+.PHONY : heap.o
+
+# target to build an object file
+heap.cpp.o:
+	cd /workspaces/cs225/CS225-FinalProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/heap.cpp.o
+.PHONY : heap.cpp.o
+
+heap.i: heap.cpp.i
+.PHONY : heap.i
+
+# target to preprocess a source file
+heap.cpp.i:
+	cd /workspaces/cs225/CS225-FinalProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/heap.cpp.i
+.PHONY : heap.cpp.i
+
+heap.s: heap.cpp.s
+.PHONY : heap.s
+
+# target to generate assembly for a file
+heap.cpp.s:
+	cd /workspaces/cs225/CS225-FinalProject/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/heap.cpp.s
+.PHONY : heap.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -167,6 +191,9 @@ help:
 	@echo "... Algorithms.o"
 	@echo "... Algorithms.i"
 	@echo "... Algorithms.s"
+	@echo "... heap.o"
+	@echo "... heap.i"
+	@echo "... heap.s"
 .PHONY : help
 
 

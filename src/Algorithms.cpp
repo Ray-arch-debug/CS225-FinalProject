@@ -4,12 +4,14 @@
  */
 
 #include "Algorithms.h"
+#include "heap.h"
 #include "kdtree.h"
 
 #include <cmath>
 #include <fstream>
 #include <iostream>
 #include <limits.h>
+#include <queue>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -17,11 +19,14 @@
 using namespace std;
 
 bool AreWithinRange(const Node& first, const Node& second, double range) {
+    return FindDistance(first, second) < range / ROAD_CURVINESS_QUOTIENT;
+}
+
+double FindDistance(const Node& first, const Node& second) {
     double delta_latitude = first.latitude - second.latitude;
     double delta_longitude = first.longitude - second.longitude;
-    double euclidean_distance = pow( pow(delta_latitude * MILES_PER_DEGREE_LATITUDE, 2) +
+    return pow( pow(delta_latitude * MILES_PER_DEGREE_LATITUDE, 2) +
                                      pow(delta_longitude * MILES_PER_DEGREE_LONGITUDE, 2), 0.5 );
-    return euclidean_distance < range / ROAD_CURVINESS_QUOTIENT;
 }
 
 std::vector<int> findShortest(Node& start, const std::vector<std::vector<int>>& graph) {
@@ -136,8 +141,6 @@ void Algorithms::Graph::createGraphKDTree(const std::string& filePath) {
     }
     KDTree<2> kdtree(points);
 
-    // may want to improve this later, Shaurya and I discussed doing a queue approach
-
     for (const Node& node : vertices_) {
         Point<2> point { MILES_PER_DEGREE_LATITUDE * node.latitude, MILES_PER_DEGREE_LONGITUDE * node.longitude };
         const vector<Point<2>>& neighbors = kdtree.findWithinDistance(point, range_ / ROAD_CURVINESS_QUOTIENT);
@@ -149,6 +152,187 @@ void Algorithms::Graph::createGraphKDTree(const std::string& filePath) {
     }
 
 }
+
+const Node& Algorithms::nodefinder(const std::string& start) const {
+    const set<Node>& nodes = graph_.GetVertices();
+
+    for (auto& node : nodes) {
+        if (node.streetAddress == start) {
+            return node;
+        }
+    }
+    throw invalid_argument("node not found");
+}
+
+const std::set<Node> Algorithms::BFS(Node start_) const {
+    // Find the start node
+    std::cout << "These are the " << start_.fuelType << " stations you can visit: \n" << std::endl;
+    std::set<Node> visited; 
+    std::queue<Node> q;
+ 
+    visited.insert(start_);
+    q.push(start_);
+ 
+    while (!q.empty()) {
+        Node s = q.front();
+        cout <<  s.streetAddress << ", ";
+        q.pop();
+ 
+        for (auto adjacent : graph_.GetNeighbors(s)) {
+            if (visited.find(adjacent) == visited.end()) {
+                q.push(adjacent);
+                visited.insert(adjacent);
+            }
+        }
+    }
+    std::cout << "\n " << std::endl;
+    std::cout << "The total number of " << start_.fuelType <<" stations you can visit you can visit from " << start_.streetAddress << " is " << visited.size() << "." << std::endl;
+
+    return visited;
+}
+
+
+
+// dijkstra uses heap.cpp and heap.h; heap.cpp and heap.h have been edited to use 
+// std::pair<std::string, double>, where first is node index and second is distance from start node
+std::vector<int> Algorithms::Dijkstra(int startCSVIdx, int endCSVIdx) const {
+    
+    std::map<int, double> distances;
+    int num_vertices = graph_.GetVertices().size();
+    heap minHeap;
+
+    for (const Node& node : graph_.GetVertices()) {
+        int csvIdx = node.index;
+        // actual heap
+        std::pair<int, double> pair(csvIdx, maxDistance);
+        minHeap.push(pair);
+
+        // positions
+        // minHeap->positions_[csvIdx] = num_vertices;
+
+        // distances
+        distances[csvIdx] = maxDistance;
+    }
+
+    distances[startCSVIdx] = 0.0;
+
+    // std::pair<int, double> startNode(start.index, 0.0); // root of heap
+    // minHeap->updateElem(startHeapIdx, startNode); // note to self: check if updateElem works properly in test case
+    minHeap.updateDistance(startCSVIdx, 0.0); // function in heap.cpp
+
+    while (!minHeap.empty()) {
+        // assert that top of minHeap is startNode during the first iteration of while loop
+        std::pair<int, double> minHeapNode = minHeap.pop();
+        int minHeapNodeCSVIdx = minHeapNode.first;
+
+        const Node& currMinNode = graph_.GetNode(minHeapNodeCSVIdx);
+
+        const std::set<Node>& neighbors = graph_.GetGraph().at(currMinNode);
+
+        for (const Node& next : neighbors) {
+            int nextNodeCSVIdx = next.index;
+            
+            double distanceFromCurrToNext = FindDistance(currMinNode, next);
+
+            if (minHeap.isInHeap(nextNodeCSVIdx) && (distances[minHeapNodeCSVIdx] != maxDistance) && 
+                (distanceFromCurrToNext + distances[minHeapNodeCSVIdx] < distances[nextNodeCSVIdx])) {
+                distances[nextNodeCSVIdx] = distances[minHeapNodeCSVIdx] + distanceFromCurrToNext;
+            
+                // updateDistance in minHeap as well
+                minHeap.updateDistance(nextNodeCSVIdx, distances[nextNodeCSVIdx]);
+            }
+        }
+    }
+
+    // call helper function w/ start and end (use BFS)
+    return findPath(startCSVIdx, endCSVIdx, distances);
+}
+
+const Node& Algorithms::Graph::GetNode(int index) const {
+    return index_map_.at(index);
+}
+
+std::vector<int> Algorithms::findPath(int startCSVIdx, int endCSVIdx, const std::map<int, double>& distances) const {
+    std::vector<int> path;
+    std::map<int, bool> visited;
+
+    std::map<int, int> prevStorage;
+
+    for (auto& [csvIndex, csvNode] : distances) {
+        //int csvIndex = it->first;
+        visited[csvIndex] = false;
+    }
+
+    std::queue<int> queue;
+
+    visited[startCSVIdx] = true;
+    queue.push(startCSVIdx);
+
+    while (!queue.empty()) {
+        int currCSVIdx = queue.front();
+
+        if (queue.front() == endCSVIdx) { break; }
+
+        for (const Node& neighbor : graph_.GetNeighbors(graph_.GetNode(currCSVIdx))) {
+            if (!visited[neighbor.index]) {
+                visited[neighbor.index] = true;
+                queue.push(neighbor.index);
+                prevStorage[neighbor.index] = currCSVIdx;
+            }
+        }
+        queue.pop();
+    }
+
+    // go backwards
+    std::stack<int> stack;
+    int currIdx = endCSVIdx;
+    for (std::map<int, int>::iterator it = prevStorage.begin(); it != prevStorage.end(); ++it) {
+        std::cout << "previous of " << it->first << " goes to " << it->second << std::endl;
+    }
+    int i = 0;
+    while (currIdx != startCSVIdx) {
+        std::cout << currIdx << std::endl;
+        stack.push(currIdx);
+        currIdx = prevStorage[currIdx];
+        i++;
+        if (i == 250) {
+            std::cout << "There is no path from starting node to ending node" << std::endl;
+            return std::vector<int>();
+        }
+    }
+    stack.push(startCSVIdx);
+
+    std::cout << stack.size() << std::endl;
+
+    while (!stack.empty()) {
+        std::cout << stack.top() << std::endl;
+        path.push_back(stack.top());
+        stack.pop();
+    }
+
+    //printDijkstras(path);
+    return path;
+}
+
+/*
+void Algorithms::printDijkstras(std::vector<int> path) const {
+    std::cout << "The sequence of nodes to go from " << path[0] << " to " << path[path.size() - 1] << " following Dijkstra's Algorithm is:" << std::endl;
+    for (int vertex : path) {
+        if (vertex == path[path.size() - 1]) {
+            std::cout << vertex << std::endl;
+        } else {
+            std::cout << vertex << " --> ";
+        }
+    }
+    std::cout << std::endl;
+*/
+
+void Algorithms::Graph::populateMapping() {
+    for (const Node& node : vertices_) {
+        index_map_.insert({ node.index, node });
+    }
+}
+
 
 void Algorithms::Graph::populateVertices(const std::string& filePath) {
 
@@ -189,4 +373,6 @@ void Algorithms::Graph::populateVertices(const std::string& filePath) {
         }
 
     }
+
+    populateMapping();
 }
