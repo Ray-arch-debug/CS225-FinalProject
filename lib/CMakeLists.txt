@@ -23,15 +23,4 @@ target_link_libraries(cs225 PRIVATE lodepng)
 # Add overall libs library.
 add_library(libs INTERFACE)
 target_include_directories(libs INTERFACE ${lib_dir})
-<<<<<<< Updated upstream
 target_link_libraries(libs INTERFACE cs225 util)
-=======
-#target_link_libraries(libs INTERFACE util)
-
-
-# Add util library.
-set(util_dir ${lib_dir}/util)
-file(GLOB_RECURSE util_sources CONFIGURE_DEPENDS ${util_dir}/*.cpp)
-add_library(util ${util_sources})
-set_target_properties(util PROPERTIES LINKER_LANGUAGE CXX)
->>>>>>> Stashed changes
