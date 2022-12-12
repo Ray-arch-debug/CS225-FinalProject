@@ -3,7 +3,7 @@
   <img src = "forefront.png">
   
   <p align = "center">
-    <h1>AUTOMOBILES AND PATHS 4</h1>
+    <h1>AUTOMOBILES AND PATHS</h1>
     <p><h3>Created by Aakash Kumar, Brendan Biernacki, Shaurya Singh, and Alex Wang</h3></p>
   </p>
   
