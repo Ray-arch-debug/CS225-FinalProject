@@ -33,9 +33,9 @@
     <li>
       <a href = "#getting-started">Getting Started</a>
       <ul>
-        <li><a href = "#setting-up">Notes On Gameplay</a></li>
-        <li><a href = "#running-instructions">Download Instructions</a></li>
-        <li><a href = "#testing-the-code">Notes On Gameplay</a></li>
+        <li><a href = "#setting-up">Set Up</a></li>
+        <li><a href = "#running-instructions">How to Run?</a></li>
+        <li><a href = "#testing-the-code">To Run Tests</a></li>
       </ul>
     </li>
   </ol>
