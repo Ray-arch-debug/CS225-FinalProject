@@ -12,7 +12,7 @@
     |
     <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Presentation Video</a>
     |
-    <a href = "https://mediaspace.illinois.edu/media/t/1_501wkwbs">Data</a>
+    <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/tree/main/data">Data</a>
     |
 <!--     <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Project Structure</a> -->
   </p>
