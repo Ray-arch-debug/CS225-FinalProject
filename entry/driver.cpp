@@ -41,7 +41,8 @@ int main(int argc, char** argv) {
         for (const Node& node : visited) {
             std::cout << node.ToString() << std::endl;
         }
-        std::cout << "The total number of " << fuel_type <<" stations you can visit you can visit from " << starting_address << " is " << visited.size() << "." << std::endl;
+        std::cout << "The total number of " << fuel_type <<" stations you can visit you can visit from ";
+        std::cout << starting_address << " is " << visited.size() << " out of " << a.GetVertices().size() << "." << std::endl;
 
     }
     
