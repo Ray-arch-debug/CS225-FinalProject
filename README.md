@@ -56,7 +56,7 @@ The inspiration for this project comes from the genuine care we have towards the
 
 ### Project Architecture
 <div align = "center"> 
-  <img src = "images/diagram.png">
+  <img src = "archi.png">
 </div>
 <br>
 <p align = "center">
