@@ -156,6 +156,19 @@ void Algorithms::Graph::createGraphKDTree(const std::string& filePath) {
 
 }
 
+
+/**
+ * NODE FINDER FUNCTION - 
+ *  
+ * This function takes in the starting location input by the user and finds the
+ * corresponding node associated with it in the constructed graph variable. 
+ * 
+ * If no node is found then it outputs accordingly.
+ * 
+ * @param start The starting location address, std::string type. 
+ * @return the node associated with the starting location. 
+
+*/
 const Node& Algorithms::nodefinder(const std::string& start) const {
     const set<Node>& nodes = graph_.GetVertices();
 
@@ -167,9 +180,29 @@ const Node& Algorithms::nodefinder(const std::string& start) const {
     throw invalid_argument("node not found");
 }
 
+
+/**
+ * BFS (USED FOR FINDING RANGE FROM GIVEN LOCATION)
+ *  
+ * This function takes in the node of the starting location found using node finder. 
+ * 
+ * It then runs a bfs, checking if the newly visited node is in range and if it is 
+ * you add it to the set of nodes you return and mark it as visited. 
+ * 
+ * If the visited node is not within range, dont add it to the return variable and 
+ * mark it as visited.
+ * 
+ * The set of verticies can be compared with the total vertices for the fuel type 
+ * in the data set to show how comprehensive the transport system is for that fuel type. 
+ * A mismatch between the connected component (of the bfs) and the total set of nodes in data
+ * show that there are gaps in the infrastructre. 
+ * 
+ * @param start The starting node, found using the 'nodefinder' function. 
+ * @return a set of nodes containing all the visited nodes from the starting node. 
+
+*/
+
 const std::set<Node> Algorithms::BFS(Node start) const {
-    // Find the start node
-    //std::cout << "These are the " << start_.fuelType << " stations you can visit: \n" << std::endl;
     std::set<Node> visited; 
     std::queue<Node> q;
  
@@ -178,7 +211,6 @@ const std::set<Node> Algorithms::BFS(Node start) const {
  
     while (!q.empty()) {
         Node s = q.front();
-        //cout <<  s.streetAddress << ", ";
         q.pop();
  
         for (auto adjacent : graph_.GetNeighbors(s)) {
@@ -188,8 +220,6 @@ const std::set<Node> Algorithms::BFS(Node start) const {
             }
         }
     }
-    //std::cout << "\n " << std::endl;
-    //std::cout << "The total number of " << start_.fuelType <<" stations you can visit you can visit from " << start_.streetAddress << " is " << visited.size() << "." << std::endl;
 
     return visited;
 }
