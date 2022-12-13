@@ -137,10 +137,10 @@ void heap::heapifyUp(size_t currentIdx)
             positions_.insert({_elems[parentIdx].first, currentIdx});
         }*/
         // update positions 
-        std::cout << "here" << std::endl;
-        std::cout << positions_[_elems[currentIdx].first] << std::endl;
-        std::cout << positions_[_elems[parentIdx].first] << std::endl;
-        std::cout << std::endl;
+        //std::cout << "here" << std::endl;
+        //std::cout << positions_[_elems[currentIdx].first] << std::endl;
+        //std::cout << positions_[_elems[parentIdx].first] << std::endl;
+        //std::cout << std::endl;
         positions_[_elems[currentIdx].first] = parentIdx;
         positions_[_elems[parentIdx].first] = currentIdx;
 

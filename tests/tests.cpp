@@ -12,8 +12,8 @@ void VerifyEqual(const Algorithms& first, const Algorithms& second) {
     REQUIRE(equal_size);
 
     for (const Node& vertex : first.GetVertices()) {
-        std::set<Node> first_neighbors = first.GetGraph().at(vertex);
-        std::set<Node> second_neighbors = second.GetGraph().at(vertex);
+        const std::set<Node>& first_neighbors = first.GetGraph().at(vertex);
+        const std::set<Node>& second_neighbors = second.GetGraph().at(vertex);
         REQUIRE( first_neighbors == second_neighbors );
     }
 };
@@ -76,9 +76,9 @@ TEST_CASE("Graph Constructor KDTree for E85 stations runs quickly", "[algorithms
     Algorithms algorithms_kdtree( "../data/alt_fuels_stations.csv", "E85", 400.0, 1 );
     auto kdtree_end = std::chrono::steady_clock::now();
     double kdtree_duration = (kdtree_end - kdtree_start).count() / 1000000000.0;
-    std::cout << "E85 Naive duration (with large range): " << kdtree_duration << std::endl;
+    std::cout << "E85 KDTree duration (with large range): " << kdtree_duration << std::endl;
 
-    REQUIRE( kdtree_duration < 12 );
+    REQUIRE( kdtree_duration < 15 );
 
 }
 
@@ -86,12 +86,11 @@ TEST_CASE("Graph Constructor KDTree for E85 stations runs quickly", "[algorithms
 /*
 TEST_CASE("Graph Constructor KDTree for ELEC stations runs quickly", "[algorithms][constructor][time]") {
 
-    // can't use large range, too many ELEC points
     auto kdtree_start = std::chrono::steady_clock::now();
-    Algorithms algorithms_kdtree( "../data/alt_fuels_stations.csv", "ELEC", 90.0, 1 );
+    Algorithms algorithms_kdtree( "../data/alt_fuels_stations.csv", "ELEC", 0, 1 );
     auto kdtree_end = std::chrono::steady_clock::now();
     double kdtree_duration = (kdtree_end - kdtree_start).count() / 1000000000.0;
-    std::cout << kdtree_duration << std::endl;
+    std::cout << "ELEC KDTree duration (with large range): " << kdtree_duration << std::endl;
 
     REQUIRE( kdtree_duration < 40 ); // 40 is not too precise
 
@@ -99,11 +98,12 @@ TEST_CASE("Graph Constructor KDTree for ELEC stations runs quickly", "[algorithm
 */
 
 
+
 TEST_CASE("Reachability in Urbana : ELEC @ '3308 Mission Dr'", "[algorithms][bfs]") {
 
     Algorithms a("../data/champaign_urbana_data.csv", "ELEC", 100.0, 1);
     Node starter = a.nodefinder("3308 Mission Dr");
-    std::set<Node> l = a.BFS(starter);
+    const std::set<Node>& l = a.BFS(starter);
     REQUIRE(l.size() == 23);
 
 }
@@ -112,7 +112,7 @@ TEST_CASE("Reachability in Urbana : LPG @ '306 E University Ave'", "[algorithms]
 
     Algorithms a("../data/champaign_urbana_data.csv", "LPG", 100.0, 1);
     Node starter = a.nodefinder("306 E University Ave");
-    std::set<Node> l = a.BFS(starter);
+    const std::set<Node>& l = a.BFS(starter);
     REQUIRE(l.size() == 3);
 
 }
@@ -121,17 +121,22 @@ TEST_CASE("Unreachable, range 0 in Urbana : LPG @ '306 E University Ave'", "[alg
 
     Algorithms a("../data/champaign_urbana_data.csv", "LPG", 0, 1);
     Node starter = a.nodefinder("306 E University Ave");
-    std::set<Node> l = a.BFS(starter);
+    const std::set<Node>& l = a.BFS(starter);
     REQUIRE(l.size() == 1);
 
 }
 
-TEST_CASE("Reachability of ALL: LPG @ '306 E University Ave'", "[algorithms][bfs]") {
+TEST_CASE("Reachability of ALL: LPG @ '306 E University Ave'", "[algorithms][bfs][time]") {
 
+    auto start = std::chrono::steady_clock::now();
     Algorithms a("../data/alt_fuels_stations.csv", "LPG", 400.0, 1);
     Node starter = a.nodefinder("306 E University Ave");
-    std::set<Node> l = a.BFS(starter);
+    const std::set<Node>& l = a.BFS(starter);
     REQUIRE(l.size() == 2741); // 2746 - 5 outliers
+
+    auto end = std::chrono::steady_clock::now();
+    double duration = (end - start).count() / 1000000000.0;
+    std::cout << "LPG BFS duration: " << duration << std::endl;
 
 }
 
@@ -145,27 +150,37 @@ TEST_CASE("Reachability invalid input", "[algorithms][bfs]") {
 
 TEST_CASE("Dijkstra Test Case Small", "[algorithms][dijkstra]") {
     Algorithms a("../data/champaign_urbana_data.csv", "ELEC", 2.0, 1);
-    std::vector<int> path = a.Dijkstra(14930, 26690);
+    const std::vector<int>& path = a.Dijkstra(14930, 26690);
     std::vector<int> path_solution = {14930, 7598, 2273, 17317, 26690};
     REQUIRE(path == path_solution);
 }
 
 TEST_CASE("Dijkstra Test Case Medium", "[algorithms][dijkstra]") {
     Algorithms a("../data/alt_fuels_stations.csv", "BD", 100.0, 1);
-    std::vector<int> path = a.Dijkstra(53216, 53515);
+    const std::vector<int>& path = a.Dijkstra(53216, 53515);
     std::vector<int> path_solution = {53216, 53224, 53515};
     REQUIRE(path == path_solution);
 }
 
-TEST_CASE("Dijkstra Test Case Large", "[algorithms][dijkstra]") {
+TEST_CASE("Dijkstra Test Case Large", "[algorithms][dijkstra][time]") {
+    auto start = std::chrono::steady_clock::now();
     Algorithms a("../data/alt_fuels_stations.csv", "E85", 200.0, 1);
-    std::vector<int> path = a.Dijkstra(2249, 1721);
+    const std::vector<int>& path = a.Dijkstra(2249, 1721);
     std::vector<int> path_solution = {2249, 1857, 2060, 1649, 2254, 2084, 51392, 51416, 21823, 51372, 1721};
     REQUIRE(path == path_solution);
+
+    auto end = std::chrono::steady_clock::now();
+    double duration = (end - start).count() / 1000000000.0;
+    std::cout << "E85 Dijkstra duration: " << duration << std::endl;
 }
 
-TEST_CASE("Dijkstra Test Case Fails", "[algorithms][dijkstra]") {
+TEST_CASE("Dijkstra Test Case Fails", "[algorithms][dijkstra][time]") {
+    auto start = std::chrono::steady_clock::now();
     Algorithms a("../data/alt_fuels_stations.csv", "E85", 200.0, 1);
-    std::vector<int> path = a.Dijkstra(6011, 6328);
+    const std::vector<int>& path = a.Dijkstra(6011, 6328);
     REQUIRE(path.size() == 0);
+
+    auto end = std::chrono::steady_clock::now();
+    double duration = (end - start).count() / 1000000000.0;
+    std::cout << "E85 Dijkstra duration (no path): " << duration << std::endl;
 }

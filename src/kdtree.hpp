@@ -101,7 +101,7 @@ void KDTree<Dim>::buildTree(vector<Point<Dim>>& newPoints, KDTreeNode*& node, un
   unsigned mid = (start + end - 1) / 2;
   quickSelect(newPoints, dim_index, mid, start, end);
   node = new KDTreeNode(newPoints.at(mid));
-  dim_index = (dim_index+1) % Dim;
+  incDim(dim_index);
   buildTree(newPoints, node->left, dim_index, start, mid);
   buildTree(newPoints, node->right, dim_index, mid+1, end);
 }
@@ -109,9 +109,6 @@ void KDTree<Dim>::buildTree(vector<Point<Dim>>& newPoints, KDTreeNode*& node, un
 template <int Dim>
 unsigned KDTree<Dim>::quickSelect(vector<Point<Dim>>& newPoints, unsigned dim_index, unsigned mid, unsigned start, unsigned end) {
   if (start == end-1) { return start; }
-  if (mid == 27262) {
-    std::cout << newPoints.at(mid) << std::endl;
-  }
   std::swap(newPoints.at(mid), newPoints.at(end-1));
   unsigned left = start;
   unsigned right = end-1;
@@ -119,7 +116,7 @@ unsigned KDTree<Dim>::quickSelect(vector<Point<Dim>>& newPoints, unsigned dim_in
   while (left < right) {
     const Point<Dim>& left_point = newPoints.at(left);
     const Point<Dim>& right_point = newPoints.at(right);
-    if (left_point[dim_index] < pivot_point[dim_index] || (left_point[dim_index] == pivot_point[dim_index] && left_point <= pivot_point) ) {
+    if (left_point[dim_index] < pivot_point[dim_index] || (left_point[dim_index] == pivot_point[dim_index] && left_point < pivot_point) ) {
       left++;
       continue;
     }
@@ -127,6 +124,7 @@ unsigned KDTree<Dim>::quickSelect(vector<Point<Dim>>& newPoints, unsigned dim_in
       right--;
       continue;
     }
+    //std::cout << left << " " << right << " " << newPoints.at(left) << " " << newPoints.at(right) << std::endl;
     std::swap(newPoints.at(left), newPoints.at(right));
   }
 

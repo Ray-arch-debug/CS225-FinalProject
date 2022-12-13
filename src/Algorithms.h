@@ -11,6 +11,7 @@
 #pragma once
 
 #include <fstream>
+#include <iostream>
 #include <limits>
 #include <vector>
 #include <string>
@@ -22,6 +23,7 @@ using namespace std;
 const double ROAD_CURVINESS_QUOTIENT = 1.24; // Not exactly accurate but close. For more, see: https://gispoint.de/fileadmin/user_upload/paper_gis_open/537521034.pdf
 const double MILES_PER_DEGREE_LATITUDE = 69.055;
 const double MILES_PER_DEGREE_LONGITUDE = 54.6;
+const unsigned long MAXIMUM_ADDRESS_LENGTH = 55;
 
 struct Node {
 
@@ -40,7 +42,27 @@ struct Node {
         return index == other.index; // assume indices are distinct
     };
 
+    string ToString() const {
+        string output;
+        output += to_string(index);
+        output += "\t";
+        output += fuelType;
+        output += "\t";
+        output += streetAddress;
+        for (size_t i = 0; i < (MAXIMUM_ADDRESS_LENGTH - streetAddress.length()) / 8; i++) {
+            output += "\t";
+        }
+        output += "\t";
+        output += state;
+        output += "\t";
+        output += to_string(latitude);
+        output += "\t";
+        output += to_string(longitude);
+        return output;
+    }
+
 };
+
 
 bool AreWithinRange(const Node& first, const Node& second, double range);
 
@@ -77,6 +99,7 @@ class Algorithms {
     const map<Node, set<Node>>& GetGraph() const;
 
     //void printDijkstras(std::vector<int> path) const;
+    const Node& GetNode(int index) const;
 
     
     private:
@@ -122,7 +145,7 @@ class Algorithms {
                 map<int, Node> index_map_;
 
                 // use map from csv index to adjacency list (need for dijkstra's)
-                map<int, set<Node>> adjacency2_;
+                //map<int, set<Node>> adjacency2_;
                 
                 map<Node, set<Node>> adjacency_;
                 map<Node, set<Node>> graph_;

@@ -98,6 +98,9 @@ const set<Node>& Algorithms::Graph::GetNeighbors(const Node& node) const {
 const map<Node, set<Node>>& Algorithms::Graph::GetGraph() const { return graph_; }
 
 
+const Node& Algorithms::GetNode(int index) const { return graph_.GetNode(index); }
+
+
 Algorithms::Graph::Graph(const std::string& filePath,
                          const string& input_fuel_type, 
                          double input_range,
@@ -164,18 +167,18 @@ const Node& Algorithms::nodefinder(const std::string& start) const {
     throw invalid_argument("node not found");
 }
 
-const std::set<Node> Algorithms::BFS(Node start_) const {
+const std::set<Node> Algorithms::BFS(Node start) const {
     // Find the start node
-    std::cout << "These are the " << start_.fuelType << " stations you can visit: \n" << std::endl;
+    //std::cout << "These are the " << start_.fuelType << " stations you can visit: \n" << std::endl;
     std::set<Node> visited; 
     std::queue<Node> q;
  
-    visited.insert(start_);
-    q.push(start_);
+    visited.insert(start);
+    q.push(start);
  
     while (!q.empty()) {
         Node s = q.front();
-        cout <<  s.streetAddress << ", ";
+        //cout <<  s.streetAddress << ", ";
         q.pop();
  
         for (auto adjacent : graph_.GetNeighbors(s)) {
@@ -185,8 +188,8 @@ const std::set<Node> Algorithms::BFS(Node start_) const {
             }
         }
     }
-    std::cout << "\n " << std::endl;
-    std::cout << "The total number of " << start_.fuelType <<" stations you can visit you can visit from " << start_.streetAddress << " is " << visited.size() << "." << std::endl;
+    //std::cout << "\n " << std::endl;
+    //std::cout << "The total number of " << start_.fuelType <<" stations you can visit you can visit from " << start_.streetAddress << " is " << visited.size() << "." << std::endl;
 
     return visited;
 }
@@ -286,26 +289,26 @@ std::vector<int> Algorithms::findPath(int startCSVIdx, int endCSVIdx, const std:
     // go backwards
     std::stack<int> stack;
     int currIdx = endCSVIdx;
-    for (std::map<int, int>::iterator it = prevStorage.begin(); it != prevStorage.end(); ++it) {
-        std::cout << "previous of " << it->first << " goes to " << it->second << std::endl;
-    }
+    //for (std::map<int, int>::iterator it = prevStorage.begin(); it != prevStorage.end(); ++it) {
+        //std::cout << "previous of " << it->first << " goes to " << it->second << std::endl;
+    //}
     int i = 0;
     while (currIdx != startCSVIdx) {
-        std::cout << currIdx << std::endl;
+        //std::cout << currIdx << std::endl;
         stack.push(currIdx);
         currIdx = prevStorage[currIdx];
         i++;
         if (i == 250) {
-            std::cout << "There is no path from starting node to ending node" << std::endl;
+            //std::cout << "There is no path from starting node to ending node" << std::endl;
             return std::vector<int>();
         }
     }
     stack.push(startCSVIdx);
 
-    std::cout << stack.size() << std::endl;
+    //std::cout << stack.size() << std::endl;
 
     while (!stack.empty()) {
-        std::cout << stack.top() << std::endl;
+        //std::cout << stack.top() << std::endl;
         path.push_back(stack.top());
         stack.pop();
     }
@@ -344,6 +347,7 @@ void Algorithms::Graph::populateVertices(const std::string& filePath) {
     }
     
     file.ignore(INT_MAX, '\n'); // ignore first line
+    //MAXIMUM_ADDRESS_LENGTH = 0;
 
     for (string line; getline(file, line); line.clear()) {
         vector<string> row;
@@ -364,7 +368,8 @@ void Algorithms::Graph::populateVertices(const std::string& filePath) {
             node.longitude     = stod(row.at(5));
             if (node.fuelType == fuel_type_) { 
                 vertices_.insert(node);
-                graph_.insert({node, set<Node>()}); 
+                graph_.insert({node, set<Node>()});
+                
             }
         } catch (std::invalid_argument& e) {
             vertices_.clear();
