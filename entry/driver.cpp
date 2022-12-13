@@ -4,7 +4,6 @@
 
 int main(int argc, char** argv) {
 
-    // run (for example): ./driver data/champaign_urbana_data.csv  200.0 
     if (argc != 6) {
         std::cerr << "Usage: ./driver file_path fuel_type range starting_address 0/ending_address" << std::endl;
         return 1;
@@ -27,7 +26,6 @@ int main(int argc, char** argv) {
         
         if (sequence.empty()) {
             cout << "There is no path from " << starting_address <<  " to " << ending_address << "." << endl;
-            return 0;
         } else {
             cout << "The path from " << starting_address <<  " to " << ending_address << " is:" << endl;
             for (int index : sequence) {
@@ -43,7 +41,6 @@ int main(int argc, char** argv) {
         for (const Node& node : visited) {
             std::cout << node.ToString() << std::endl;
         }
-
         std::cout << "The total number of " << fuel_type <<" stations you can visit you can visit from " << starting_address << " is " << visited.size() << "." << std::endl;
 
     }
