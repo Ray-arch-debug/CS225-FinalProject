@@ -10,7 +10,7 @@
   <p align = "center">
     <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/blob/main/documents/Team%20Proposal">Project Proposal</a>
     |
-    <a href = "https://docs.google.com/document/d/1tTfg5maTvJ1vPNpdlG3aSTgqO196-tSzHHWcsHte4dg/edit?usp=sharing">Presentation Video</a>
+    <a href = "https://youtu.be/eFeh2Rhlu20">Presentation Video</a>
     |
     <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/tree/main/data">Data</a>
     |
