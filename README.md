@@ -85,7 +85,7 @@ The four of us also enjoyed working on this project together due to the innovati
    <li>Open up your Terminal</li>
    <li><code>cd</code> into the folder containing cs225 Dockerfile</li>
    <li><code>git clone https://github.com/Ray-arch-debug/CS225-FinalProject.git</code></li>
-   <li><code>cd CS-225FinalProject</code></li>
+   <li><code>cd CS225-FinalProject</code></li>
   <li><code>mkdir build</code></li>
   <li><code>cd build</code></li>
   <li><code>cmake ..</code></li>
@@ -113,7 +113,7 @@ The four of us also enjoyed working on this project together due to the innovati
   <li> Upon successful run, you’ll see the following message (it might take a while): </li>
   <img src = "test_output.png">
   
-  <li> Note: Be mindful that you might fail a test case if your machine is slower than ours. Although this should be ignored as the time restrictions are mostly arbitrary. </li>
+  <li> Note: Be mindful that you might fail a test case if your machine is slower than ours, though this should be ignored as the time limits are mostly arbitrary. </li>
 </ol>
 
 
