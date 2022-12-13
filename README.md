@@ -93,7 +93,7 @@ The four of us also enjoyed working on this project together due to the innovati
 
 <ol type="1">
    <li>From the build directory, run <code>make</code></li>
-  <li> <code> ./driver file_name fuel_type range address number</code> </li>
+  <li> <code> ./driver file_name fuel_type range address string</code> </li>
   <li> The file_name indicates the data file you would like to use, the fuel_type indicates what kind of fuel your automobile uses, the range indicates the distance your car can travel in miles <insert as a double>, the address indicates the address of the alternate fuel station you would begin on, the number indicates which algorithm to run -> 0 means running the BFS and putting the address means running dikstra's algorithm which runs another algorithm to print the shortest path. </li>
    
 </ol>
