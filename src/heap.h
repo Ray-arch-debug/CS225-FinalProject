@@ -10,12 +10,6 @@
 #include <utility>
 #include <map>
 
-// forward declare descriptor (used for printing, ignore)
-// template <class Type, class Comp>
-// class HeapNodeDescriptor;
-
-
-// template <class T, class Compare = std::less<T>>
 class heap
 {
   public:

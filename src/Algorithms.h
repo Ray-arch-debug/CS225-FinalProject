@@ -10,8 +10,6 @@
 
 #pragma once
 
-#include <fstream>
-#include <iostream>
 #include <limits>
 #include <vector>
 #include <string>
@@ -79,18 +77,48 @@ class Algorithms {
     /**
     * Dijkstra's Algorithm
     *
-    * Given a start node and an adjacency matrix, returns a vector of the minimum distances
-    * from start to nodes 0 to n, where n is the number of nodes in the graph of the start node's fuel type
+    * Given a starting destination and ending destination, Dijkstra's returns a vector of ints which 
+    * stores the sequence of nodes of the shortest path from the starting destination to the ending destination
     * 
-    * @return vector which holds the shortest distances from start to node i, where i is ith index of vector
+    * @param startCSVIdx CSV index of the starting destination (fuel station). CSV index comes from the CSV file.
+    * @param endCSVIdx CSV index of the end destination (fuel station). CSV index comes from the CSV file.
+    * @return vector of ints which stores the CSV indeces of the shortest path from startCSVIdx to endCSVIdx
     */
     std::vector<int> Dijkstra(int startCSVIdx, int endCSVIdx) const;
 
+    /**
+    * BFS (USED FOR FINDING RANGE FROM GIVEN LOCATION)
+    *  
+    * This function takes in the node of the starting location found using node finder. 
+    * 
+    * It then runs a bfs, checking if the newly visited node is in range and if it is 
+    * you add it to the set of nodes you return and mark it as visited. 
+    * 
+    * If the visited node is not within range, dont add it to the return variable and 
+    * mark it as visited.
+    * 
+    * The set of verticies can be compared with the total vertices for the fuel type 
+    * in the data set to show how comprehensive the transport system is for that fuel type. 
+    * A mismatch between the connected component (of the bfs) and the total set of nodes in data
+    * show that there are gaps in the infrastructre. 
+    * 
+    * @param start The starting node, found using the 'nodefinder' function. 
+    * @return a set of nodes containing all the visited nodes from the starting node. 
+    */
     const std::set<Node> BFS(Node start) const;
 
+    /**
+    * NODE FINDER FUNCTION - 
+    *  
+    * This function takes in the starting location input by the user and finds the
+    * corresponding node associated with it in the constructed graph variable. 
+    * 
+    * If no node is found then it outputs accordingly.
+    * 
+    * @param start The starting location address, std::string type. 
+    * @return the node associated with the starting location. 
+    */
     const Node& nodefinder(const std::string& start) const;
-
-    std::vector<int> findPath(int startCSVIdx, int endCSVIdx, const std::map<int, double>& distances) const;
 
     // helper for testing
     const set<Node>& GetVertices() const;
@@ -98,11 +126,24 @@ class Algorithms {
     // helper for testing
     const map<Node, set<Node>>& GetGraph() const;
 
-    //void printDijkstras(std::vector<int> path) const;
     const Node& GetNode(int index) const;
 
     
     private:
+        /**
+        * findPath (helper/extension of Dijkstras Algorithm)
+        *
+        * Given a starting location and ending destination, findpath returns a vector of ints which 
+        * stores the sequence of nodes of the shortest path from the starting destination to the ending destination
+        * (returns the same vector as Dijkstra). 
+        * 
+        * @param startCSVIdx CSV index of the starting location (fuel station). CSV index comes from the CSV file.
+        * @param endCSVIdx CSV index of the end destination (fuel station). CSV index comes from the CSV file.
+        * @param distances a map from CSV index to the shortest distance from that CSV index to the starting location. 
+        * distances contains all the CSV indeces in the Shortest Path Tree.
+        * @return vector of ints (called path) which stores the CSV indeces of the shortest path from startCSVIdx to endCSVIdx.
+        */
+        std::vector<int> findPath(int startCSVIdx, int endCSVIdx, const std::map<int, double>& distances) const;
 
         class Graph {
 
@@ -118,7 +159,6 @@ class Algorithms {
 
 
             private:
-
                 /**
                 * Creates a graph from the csv at the given filePath. Uses the naive approach where all pairs
                 * of vertices are checked to determine if they are connected by an edge. The expected runtime
@@ -141,13 +181,9 @@ class Algorithms {
 
                 void populateMapping();
 
-                // need a map from csv index to its node
+                // map from csv index to its node; NEEDED FOR DIJKSTRAS
                 map<int, Node> index_map_;
-
-                // use map from csv index to adjacency list (need for dijkstra's)
-                //map<int, set<Node>> adjacency2_;
                 
-                map<Node, set<Node>> adjacency_;
                 map<Node, set<Node>> graph_;
                 set<Node> vertices_;
                 string fuel_type_;
@@ -155,5 +191,4 @@ class Algorithms {
         };
         Graph graph_;
         const double maxDistance = numeric_limits<double>::max(); // represents infinity
-        //std::map<int, double> distances_;
 };
