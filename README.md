@@ -14,6 +14,7 @@
     |
     <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/tree/main/data">Data</a>
     |
+    <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/blob/main/documents/Project%20Name_%20Automobiles%20and%20Alternate%20Fuel%20Pumps.pdf"> Project Write Up</a>
 <!--     <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Project Structure</a> -->
   </p>
 </div>
@@ -56,10 +57,11 @@ The inspiration for this project comes from the genuine care we have towards the
 
 ### Project Architecture
 <div align = "center"> 
-  <img src = "images/diagram.png">
+  <img src = "archi.png">
 </div>
 <br>
-<p align = "center">
+<p>
+  The image above shows the architecture of the project where we started with the data and then used the KD-Tree to make the graph. The graph has an adjacency list and other functions which help us write other algorithms. The graph is used to write Dijkstra's algorithm which turns our graph into a shortest path tree. This tree is later used to write the algorithm for the shortest path between two nodes which is the output to the program. The other method runs the BFS Traversal which gives all the alternate fuel stations which can eventually be reached by the automobile in the given range of the automobile. This can also be shown through the program output.
 
 </p>
 
@@ -93,8 +95,8 @@ The four of us also enjoyed working on this project together due to the innovati
 
 <ol type="1">
    <li>From the build directory, run <code>make</code></li>
-  <li> <code> ./driver file_name fuel_type range address string</code> </li>
-  <li> The file_name indicates the data file you would like to use, the fuel_type indicates what kind of fuel your automobile uses, the range indicates the distance your car can travel in miles <insert as a double>, the address indicates the address of the alternate fuel station you would begin on, the number indicates which algorithm to run -> 0 means running the BFS and putting the address means running dikstra's algorithm which runs another algorithm to print the shortest path. </li>
+  <li> <code> ./driver file_name fuel_type range starting_address 0/ending_address</code> </li>
+  <li> The file_name indicates the data file you would like to use, the fuel_type indicates what kind of fuel your automobile uses, the range indicates the distance your car can travel in miles <insert as a double>, the address indicates the address of the alternate fuel station you would begin on, the number indicates which algorithm to run -> 0 means running the BFS and putting the address means running Dijkstra's algorithm which runs another algorithm to print the shortest path. </li>
    
 </ol>
 
@@ -107,6 +109,9 @@ The four of us also enjoyed working on this project together due to the innovati
    <li>From the build directory, run <code>make test</code></li>
   <li> Run <code>./test</code> to run all test cases, or run each individual test by running <code>./test</code> (test_case_name) </li>
   <li> Upon successful run, you’ll see the following message (it might take a while): </li>
+  <img src = "test_output.png">
+  
+  <li> Note: Be mindful that you might fail a test case if your machine is slower than ours. Although this should be ignored as the time restrictions are mostly arbitrary. </li>
 </ol>
 
 
