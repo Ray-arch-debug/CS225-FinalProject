@@ -59,7 +59,8 @@ The inspiration for this project comes from the genuine care we have towards the
   <img src = "archi.png">
 </div>
 <br>
-<p align = "center">
+<p>
+  The image above shows the architecture of the project where we started with the data and then used the KD-Tree to make the graph. The graph has an adjacency list and other functions which help us write other algorithms. The graph is used to write Dijkstra's algorithm which turns our graph into a shortest path tree. This tree is later used to write the algorithm for the shortest path between two nodes which is the output to the program. The other method runs the BFS Traversal which gives all the alternate fuel stations which can eventually be reached by the automobile in the given range of the automobile. This can also be shown through the program output.
 
 </p>
 
