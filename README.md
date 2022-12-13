@@ -107,6 +107,7 @@ The four of us also enjoyed working on this project together due to the innovati
    <li>From the build directory, run <code>make test</code></li>
   <li> Run <code>./test</code> to run all test cases, or run each individual test by running <code>./test</code> (test_case_name) </li>
   <li> Upon successful run, you’ll see the following message (it might take a while): </li>
+  <img src = "test_output.png">
 </ol>
 
 
