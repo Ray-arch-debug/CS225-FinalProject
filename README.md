@@ -14,6 +14,7 @@
     |
     <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/tree/main/data">Data</a>
     |
+    <a href = "https://github.com/Ray-arch-debug/CS225-FinalProject/blob/main/documents/Project%20Name_%20Automobiles%20and%20Alternate%20Fuel%20Pumps.pdf"> Project Write Up</a>
 <!--     <a href = "https://docs.google.com/document/d/16Ol95jGr3P_oHxa4LqEG1_2wpmvbBIXkynpoy6MEi_M/edit?usp=sharing">Project Structure</a> -->
   </p>
 </div>
