@@ -94,8 +94,8 @@ The four of us also enjoyed working on this project together due to the innovati
 
 <ol type="1">
    <li>From the build directory, run <code>make</code></li>
-  <li> <code> ./driver file_name fuel_type range address string</code> </li>
-  <li> The file_name indicates the data file you would like to use, the fuel_type indicates what kind of fuel your automobile uses, the range indicates the distance your car can travel in miles <insert as a double>, the address indicates the address of the alternate fuel station you would begin on, the number indicates which algorithm to run -> 0 means running the BFS and putting the address means running dikstra's algorithm which runs another algorithm to print the shortest path. </li>
+  <li> <code> ./driver file_name fuel_type range starting_address 0/ending_address</code> </li>
+  <li> The file_name indicates the data file you would like to use, the fuel_type indicates what kind of fuel your automobile uses, the range indicates the distance your car can travel in miles <insert as a double>, the address indicates the address of the alternate fuel station you would begin on, the number indicates which algorithm to run -> 0 means running the BFS and putting the address means running Dijkstra's algorithm which runs another algorithm to print the shortest path. </li>
    
 </ol>
 
@@ -110,7 +110,7 @@ The four of us also enjoyed working on this project together due to the innovati
   <li> Upon successful run, you’ll see the following message (it might take a while): </li>
   <img src = "test_output.png">
   
-  <li> Note: Be mindful that you might fail a test case if your machine is slower than ours. Although this should be ignored as we inteded this to be an arbitart test </li>
+  <li> Note: Be mindful that you might fail a test case if your machine is slower than ours. Although this should be ignored as the time restrictions are mostly arbitrary. </li>
 </ol>
 
 
