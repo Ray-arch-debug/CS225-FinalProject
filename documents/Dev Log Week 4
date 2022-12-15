@@ -1,0 +1,25 @@
+# Development Log (Date: 11/25/22 -- 12/02/22)
+
+## Weekly Goals
+Our goals were the following:
+
+1. Finish cleaning out the dataset
+2. Finish the Makefile
+3. Start test cases work
+4. Complete at least one algorithm (e.g, Dijkstra's)
+
+We did complete all of the above the following, although we are not at the spot we want to be with because we honestly did the bare minimum and still have editing/debugging to do. 
+
+## Specific Tasks Completed (and by who)
+Shaurya and Alex worked on the .cpp and .h files (classes and interface) as well as Dijkstra's Algorithm.
+Brendan finished the Makefile work and started test case work.
+Aakash completed cleaning out the dataset for usage.
+
+## Problems Encountered 
+We encountered a few problems. For instance, when working on the .h files (our interface), we had many different options to choose from in terms of how we represented our graph. We resolved this method by deciding that since our dataset is ginormous, we will use an adjacency list. There were also similar implementation issues like this, where we had to choose a between different kinds of data structures or how different pieces would fit together. Additionally, with the Makefile, we encountered issues where it wasn't working, so we used logging statements to figure out what went wrong. Lastly, we encountered an issue with the dataset which we resolved by using a python script to parse through it. Nontheless, we were able to resolve all of our issues.
+
+## Plans for next week
+For this next week, we plan on finishing our other algorithm (Prim's and/or Kruskal's), and then combining everything together. We will be meeting in person on Sunday (12/04) to finalize everything.
+
+## Optional: Questions for mentor
+No questions this week, but thank you for all your understanding and help!
